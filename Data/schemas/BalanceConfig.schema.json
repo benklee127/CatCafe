@@ -1,0 +1,11 @@
+﻿{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BalanceConfig",
+  "type": "object",
+  "required": ["overstim", "trust", "economy"],
+  "properties": {
+    "overstim": {"type": "object"},
+    "trust": {"type": "object"},
+    "economy": {"type": "object"}
+  }
+}

@@ -1,0 +1,15 @@
+﻿{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CatDefinition",
+  "type": "object",
+  "required": ["id", "display_name", "rarity", "visual", "traits", "trust", "overstim"],
+  "properties": {
+    "id": {"type": "string"},
+    "display_name": {"type": "string"},
+    "rarity": {"type": "string", "enum": ["common", "uncommon", "rare"]},
+    "visual": {"type": "object"},
+    "traits": {"type": "array", "items": {"type": "object"}},
+    "trust": {"type": "object"},
+    "overstim": {"type": "object"}
+  }
+}

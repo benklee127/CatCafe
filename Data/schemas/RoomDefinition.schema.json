@@ -1,0 +1,14 @@
+﻿{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RoomDefinition",
+  "type": "object",
+  "required": ["id", "tile_width", "tile_height", "rest_area_tile", "patron_spawns", "cat_spawns"],
+  "properties": {
+    "id": {"type": "string"},
+    "tile_width": {"type": "number"},
+    "tile_height": {"type": "number"},
+    "rest_area_tile": {"type": "object"},
+    "patron_spawns": {"type": "array", "items": {"type": "object"}},
+    "cat_spawns": {"type": "array", "items": {"type": "object"}}
+  }
+}

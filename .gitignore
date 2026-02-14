@@ -1,0 +1,24 @@
+﻿# Godot
+.import/
+.godot/
+*.import
+export_presets.cfg
+
+# Godot Mono/C#
+.mono/
+data_*/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/*.log
+
+# Build/output
+build/
+dist/
+
+# Local saves/logs
+user/
+logs/
+*.log
+*.tmp

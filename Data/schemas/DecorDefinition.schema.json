@@ -1,0 +1,14 @@
+﻿{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DecorDefinition",
+  "type": "object",
+  "required": ["id", "category", "buffs", "aura_radius", "stack_rule", "placement"],
+  "properties": {
+    "id": {"type": "string"},
+    "category": {"type": "string"},
+    "buffs": {"type": "object"},
+    "aura_radius": {"type": "number"},
+    "stack_rule": {"type": "string"},
+    "placement": {"type": "object"}
+  }
+}

@@ -1,0 +1,18 @@
+﻿{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RunState",
+  "type": "object",
+  "required": ["save_version", "day", "time_of_day", "money", "reputation", "active_cats", "active_patrons", "adoptions_total", "placed_decor", "unlocked_content"],
+  "properties": {
+    "save_version": {"type": "number"},
+    "day": {"type": "number"},
+    "time_of_day": {"type": "string"},
+    "money": {"type": "number"},
+    "reputation": {"type": "number"},
+    "active_cats": {"type": "number"},
+    "active_patrons": {"type": "number"},
+    "adoptions_total": {"type": "number"},
+    "placed_decor": {"type": "array"},
+    "unlocked_content": {"type": "array", "items": {"type": "string"}}
+  }
+}

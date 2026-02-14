@@ -1,0 +1,12 @@
+﻿{
+  "save_version": 1,
+  "day": 1,
+  "time_of_day": "morning",
+  "money": 100,
+  "reputation": 0,
+  "active_cats": 0,
+  "active_patrons": 0,
+  "adoptions_total": 0,
+  "placed_decor": [],
+  "unlocked_content": ["basic_layout"]
+}

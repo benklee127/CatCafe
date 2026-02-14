@@ -1,0 +1,17 @@
+﻿{
+  "overstim": {
+    "base_decay_per_sec": 4,
+    "retreat_threshold": 100,
+    "rest_recovery_per_sec": 25
+  },
+  "trust": {
+    "daily_base_gain": 6,
+    "stress_penalty": 4,
+    "ready_threshold": 100
+  },
+  "economy": {
+    "base_tip": 3,
+    "adoption_reputation": 1,
+    "starting_money": 100
+  }
+}

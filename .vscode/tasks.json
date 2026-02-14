@@ -1,0 +1,11 @@
+﻿{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Validate Data (Godot)",
+      "type": "shell",
+      "command": "godot4 --headless --script res://Tools/validate_data.gd",
+      "problemMatcher": []
+    }
+  ]
+}

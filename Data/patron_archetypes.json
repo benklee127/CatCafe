@@ -1,0 +1,5 @@
+﻿[
+  {"id":"gentle_reader","display_name":"Gentle Reader","overstim_impact":6.0,"spend_rate":1.1,"visit_duration_sec":90,"tags":["quiet","bookish","gentle"]},
+  {"id":"busy_remote_worker","display_name":"Busy Remote Worker","overstim_impact":11.0,"spend_rate":1.4,"visit_duration_sec":75,"tags":["routine","foodie"]},
+  {"id":"hyper_toddler","display_name":"Hyper Toddler","overstim_impact":20.0,"spend_rate":0.8,"visit_duration_sec":55,"tags":["active","playful","social"]}
+]

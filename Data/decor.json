@@ -1,0 +1,14 @@
+﻿[
+  {"id":"velvet_armchair","category":"customer","buffs":{"patron_stay_mult":1.25,"tip_mult":1.1},"aura_radius":2,"stack_rule":"diminishing","placement":{"walkable":false}},
+  {"id":"espresso_bar","category":"customer","buffs":{"patron_turnover_mult":1.3,"interaction_mult":0.85},"aura_radius":3,"stack_rule":"additive","placement":{"walkable":false}},
+  {"id":"wall_shelf","category":"cat","buffs":{"mid_rest_reduction":8},"aura_radius":2,"stack_rule":"diminishing","placement":{"walkable":false}},
+  {"id":"heating_pad","category":"cat","buffs":{"happiness_gain":10,"sleep_bias":0.2},"aura_radius":1,"stack_rule":"diminishing","placement":{"walkable":true}},
+  {"id":"plant_partition","category":"flow","buffs":{"line_of_sight_break":0.25},"aura_radius":2,"stack_rule":"additive","placement":{"walkable":false}},
+  {"id":"cat_tunnel","category":"cat","buffs":{"pathing_speed_mult":1.08},"aura_radius":2,"stack_rule":"additive","placement":{"walkable":true}},
+  {"id":"window_perch","category":"cat","buffs":{"trust_gain_mult":1.1},"aura_radius":2,"stack_rule":"diminishing","placement":{"walkable":false}},
+  {"id":"book_nook","category":"customer","buffs":{"gentle_reader_spawn_bias":0.15},"aura_radius":2,"stack_rule":"additive","placement":{"walkable":false}},
+  {"id":"tea_station","category":"customer","buffs":{"tip_mult":1.05},"aura_radius":2,"stack_rule":"additive","placement":{"walkable":false}},
+  {"id":"scratch_post","category":"cat","buffs":{"overstim_decay_mult":1.12},"aura_radius":1,"stack_rule":"additive","placement":{"walkable":true}},
+  {"id":"quiet_signage","category":"flow","buffs":{"hyper_spawn_bias":-0.1},"aura_radius":3,"stack_rule":"additive","placement":{"walkable":false}},
+  {"id":"adoption_corner","category":"meta","buffs":{"adoption_reputation_mult":1.1},"aura_radius":2,"stack_rule":"unique","placement":{"walkable":false}}
+]

@@ -1,0 +1,13 @@
+﻿{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TraitDefinition",
+  "type": "object",
+  "required": ["id", "display_name", "overstim_rate_mult", "trust_gain_mult", "adoption_match_tags"],
+  "properties": {
+    "id": {"type": "string"},
+    "display_name": {"type": "string"},
+    "overstim_rate_mult": {"type": "number"},
+    "trust_gain_mult": {"type": "number"},
+    "adoption_match_tags": {"type": "array", "items": {"type": "string"}}
+  }
+}

@@ -1,0 +1,14 @@
+﻿{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PatronArchetypeDefinition",
+  "type": "object",
+  "required": ["id", "display_name", "overstim_impact", "spend_rate", "visit_duration_sec", "tags"],
+  "properties": {
+    "id": {"type": "string"},
+    "display_name": {"type": "string"},
+    "overstim_impact": {"type": "number"},
+    "spend_rate": {"type": "number"},
+    "visit_duration_sec": {"type": "number"},
+    "tags": {"type": "array", "items": {"type": "string"}}
+  }
+}
