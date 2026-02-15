@@ -1,4 +1,4 @@
-﻿# M3 Manual Test: Vertical Slice
+# M3 Manual Test: Vertical Slice
 
 1. New run starts from menu to playable cafe.
 2. Tutorial prompts are shown once and dismiss correctly.

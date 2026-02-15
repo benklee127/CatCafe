@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://prototype_cat_scene"]
+
+[ext_resource type="Script" path="res://Scripts/prototype/MainLevelCat.gd" id="1_cat_script"]
+[ext_resource type="Texture2D" path="res://Art_Assets/cats/export/cat_placeholder_v001.png" id="2_cat_texture"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_interaction"]
+radius = 28.0
+
+[node name="Cat" type="Node2D"]
+script = ExtResource("1_cat_script")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -12)
+texture = ExtResource("2_cat_texture")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_interaction")
+
+[node name="NameAnchor" type="Marker2D" parent="."]
+position = Vector2(0, -32)

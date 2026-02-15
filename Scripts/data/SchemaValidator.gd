@@ -1,4 +1,4 @@
-﻿extends RefCounted
+extends RefCounted
 class_name SchemaValidator
 
 func validate_record(record: Dictionary, required_keys: Array[String], schema_name: String) -> Dictionary:

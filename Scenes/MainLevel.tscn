@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://low3oe7rhjmx"]
+
+[ext_resource type="Script" uid="uid://rtbhlg477x3u" path="res://Scripts/prototype/MainLevel.gd" id="1_mainlevel"]
+[ext_resource type="Texture2D" uid="uid://dffaha7k1kcoi" path="res://Art_Assets/tiles/export/background_iso_grid_placeholder_v001.png" id="2_bg"]
+
+[node name="MainLevel" type="Node2D" unique_id=1233951246]
+script = ExtResource("1_mainlevel")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=784495081]
+position = Vector2(528, 264)
+texture = ExtResource("2_bg")
+
+[node name="Actors" type="Node2D" parent="." unique_id=1617342935]
+y_sort_enabled = true
+
+[node name="Decor" type="Node2D" parent="Actors" unique_id=1917863616]
+
+[node name="Cats" type="Node2D" parent="Actors" unique_id=430011725]
+
+[node name="Patrons" type="Node2D" parent="Actors" unique_id=888031918]

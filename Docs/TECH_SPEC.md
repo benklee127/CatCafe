@@ -1,4 +1,4 @@
-﻿# TECH SPEC
+# TECH SPEC
 
 ## Stack
 - Engine: Godot 4.3+

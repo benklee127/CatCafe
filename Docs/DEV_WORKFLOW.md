@@ -1,4 +1,4 @@
-﻿# Dev Workflow
+# Dev Workflow
 
 ## Branching
 - `main`: protected release branch.

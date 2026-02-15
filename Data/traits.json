@@ -1,4 +1,4 @@
-﻿[
+[
   {"id":"cuddly","display_name":"Cuddly","overstim_rate_mult":1.15,"trust_gain_mult":1.2,"adoption_match_tags":["quiet","bookish"]},
   {"id":"feisty","display_name":"Feisty","overstim_rate_mult":1.35,"trust_gain_mult":0.9,"adoption_match_tags":["active","playful"]},
   {"id":"glutton","display_name":"Glutton","overstim_rate_mult":0.95,"trust_gain_mult":1.0,"adoption_match_tags":["foodie","routine"]},

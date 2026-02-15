@@ -1,4 +1,4 @@
-﻿extends Node2D
+extends Node2D
 
 enum CatState { WANDER, RETREAT, REST }
 

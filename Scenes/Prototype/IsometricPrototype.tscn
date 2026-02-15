@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://beo0tpxyh77ey"]
+
+[ext_resource type="Script" uid="uid://dblwv5moo7go5" path="res://Scripts/prototype/IsometricPrototype.gd" id="1_iso_script"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g1glu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_floor"]
+size = Vector2(900, 620)
+
+[node name="IsometricPrototype" type="Node2D" unique_id=1371470082]
+script = ExtResource("1_iso_script")
+draw_debug_grid = false
+patrons_to_spawn = 1
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1693245188]
+z_index = -2000
+position = Vector2(512, 384)
+
+[node name="TileLayer" type="Node2D" parent="." unique_id=1048818121]
+material = SubResource("ShaderMaterial_g1glu")
+
+[node name="Actors" type="Node2D" parent="." unique_id=672487916]
+y_sort_enabled = true
+
+[node name="Decor" type="Node2D" parent="Actors" unique_id=1483973376]
+
+[node name="Cats" type="Node2D" parent="Actors" unique_id=453662055]
+
+[node name="Patrons" type="Node2D" parent="Actors" unique_id=187276104]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=479097799]
+position = Vector2(512, 360)
+
+[node name="FloorInteraction" type="Area2D" parent="." unique_id=1771159768]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FloorInteraction" unique_id=2042258102]
+shape = SubResource("RectangleShape2D_floor")
+debug_color = Color(0.5870741, 0.5271589, 0.43568793, 0.41960785)

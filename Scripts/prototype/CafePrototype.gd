@@ -1,16 +1,16 @@
-﻿extends Node2D
+extends Node2D
 
-const CatAgentScript := preload("res://Scripts/prototype/CatAgent.gd")
-const PatronAgentScript := preload("res://Scripts/prototype/PatronAgent.gd")
-const CatFactoryScript := preload("res://Scripts/data/CatFactory.gd")
+const CatAgentScript = preload("res://Scripts/prototype/CatAgent.gd")
+const PatronAgentScript = preload("res://Scripts/prototype/PatronAgent.gd")
+const CatFactoryScript = preload("res://Scripts/data/CatFactory.gd")
 
 @export var cat_count: int = 4
 @export var patron_count: int = 3
 @export var deterministic_seed: int = 240214
 @export var use_deterministic_seed: bool = true
-@export var world_bounds := Rect2(Vector2(180, 180), Vector2(1200, 560))
+@export var world_bounds: Rect2 = Rect2(Vector2(180, 180), Vector2(1200, 560))
 
-var rng := RandomNumberGenerator.new()
+var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var cats: Array = []
 var patrons: Array = []
 var data: Dictionary = {}
@@ -20,9 +20,9 @@ var cat_factory
 @onready var cat_layer: Node2D = $World/CatLayer
 @onready var patron_layer: Node2D = $World/PatronLayer
 @onready var rest_area: Marker2D = $World/RestArea
-@onready var debug_hud = $DebugHUD
-@onready var data_loader = $DataLoader
-@onready var save_system = $SaveSystem
+@onready var debug_hud: CanvasLayer = $DebugHUD
+@onready var data_loader: Node = $DataLoader
+@onready var save_system: Node = $SaveSystem
 
 func _ready() -> void:
 	if use_deterministic_seed:
@@ -35,14 +35,14 @@ func _ready() -> void:
 	_spawn_cats()
 	_spawn_patrons()
 
-	var loaded := save_system.load_run_state()
+	var loaded: Dictionary = save_system.load_run_state()
 	if loaded.is_empty():
 		save_system.save_run_state(_snapshot_run_state())
 
 func _process(_delta: float) -> void:
 	for patron in patrons:
 		for cat in cats:
-			var dist := patron.global_position.distance_to(cat.global_position)
+			var dist: float = patron.global_position.distance_to(cat.global_position)
 			if dist <= patron.interaction_radius:
 				cat.apply_stimulation(patron.overstim_impact * get_process_delta_time(), patron.archetype_id)
 
@@ -63,7 +63,7 @@ func _spawn_cats() -> void:
 func _spawn_patrons() -> void:
 	var archetypes: Array = data.get("patron_archetypes", [])
 	for i in patron_count:
-		var idx := rng.randi_range(0, max(0, archetypes.size() - 1))
+		var idx: int = rng.randi_range(0, max(0, archetypes.size() - 1))
 		var source: Dictionary = archetypes[idx] if not archetypes.is_empty() else {}
 		var patron = PatronAgentScript.new()
 		patron.name = "Patron_%d" % i

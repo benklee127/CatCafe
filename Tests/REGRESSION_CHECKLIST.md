@@ -1,4 +1,4 @@
-﻿# Regression Checklist
+# Regression Checklist
 
 - Placement still respects bounds/occupancy.
 - Cat retreat/rest cycle never deadlocks.

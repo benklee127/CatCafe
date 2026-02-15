@@ -1,4 +1,4 @@
-﻿# GAME SPEC
+# GAME SPEC
 
 ## Pillars
 1. Cozy management with readable pressure.

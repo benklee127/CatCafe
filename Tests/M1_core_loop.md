@@ -1,4 +1,4 @@
-﻿# M1 Manual Test: Core Loop
+# M1 Manual Test: Core Loop
 
 ## Placement
 1. Left click empty valid tile -> chair appears snapped.

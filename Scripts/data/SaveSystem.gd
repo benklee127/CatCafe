@@ -1,4 +1,4 @@
-﻿extends Node
+extends Node
 
 const SAVE_PATH := "user://run_state.json"
 const CURRENT_VERSION := 1

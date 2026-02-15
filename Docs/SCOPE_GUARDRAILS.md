@@ -1,4 +1,4 @@
-﻿# SCOPE GUARDRAILS
+# SCOPE GUARDRAILS
 
 ## Rules
 1. No milestone close with known P1 gameplay breakage.

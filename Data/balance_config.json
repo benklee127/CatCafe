@@ -1,4 +1,4 @@
-﻿{
+{
   "overstim": {
     "base_decay_per_sec": 4,
     "retreat_threshold": 100,

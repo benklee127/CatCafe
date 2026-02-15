@@ -1,4 +1,4 @@
-﻿# GitHub Issues / Milestones Setup
+# GitHub Issues / Milestones Setup
 
 Create milestones:
 - M0 Foundation

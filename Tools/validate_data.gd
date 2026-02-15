@@ -1,4 +1,4 @@
-﻿extends SceneTree
+extends SceneTree
 
 const DataLoaderScript := preload("res://Scripts/data/DataLoader.gd")
 

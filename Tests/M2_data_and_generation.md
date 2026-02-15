@@ -1,4 +1,4 @@
-﻿# M2 Manual Test: Data + Generation
+# M2 Manual Test: Data + Generation
 
 ## Data load
 1. Launch scene; verify no missing-file errors.

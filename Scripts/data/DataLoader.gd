@@ -1,4 +1,4 @@
-﻿extends Node
+extends Node
 
 const SchemaValidatorScript := preload("res://Scripts/data/SchemaValidator.gd")
 

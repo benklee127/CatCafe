@@ -1,4 +1,4 @@
-﻿# CatCafe
+# CatCafe
 
 Godot 4.3+ isometric foster cat cafe management prototype.
 

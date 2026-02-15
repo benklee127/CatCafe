@@ -1,4 +1,4 @@
-﻿extends Node2D
+extends Node2D
 
 @export var speed: float = 56.0
 @export var interaction_radius: float = 30.0

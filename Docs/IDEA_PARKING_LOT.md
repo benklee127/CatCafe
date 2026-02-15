@@ -1,4 +1,4 @@
-﻿# IDEA PARKING LOT
+# IDEA PARKING LOT
 
 Record ideas here without interrupting active milestone scope.
 

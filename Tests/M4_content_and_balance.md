@@ -1,4 +1,4 @@
-﻿# M4 Manual Test: Content + Balance
+# M4 Manual Test: Content + Balance
 
 1. Verify 50 decor definitions load.
 2. Verify 5 patron archetypes spawn distribution.
