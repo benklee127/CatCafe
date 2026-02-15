@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3]
+
+[sub_resource type="BoxMesh" id="1"]
+size = Vector3(0.9, 0.4, 0.6)
+
+[node name="WindowPerch3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("1")
+position = Vector3(0, 0.6, 0)

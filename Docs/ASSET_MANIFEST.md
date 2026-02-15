@@ -41,6 +41,15 @@ Purpose: single source of truth for all production assets, ownership, and delive
 | art_minigame_laser_01 | minigame | Laser mini-game art pack | TBD | M4 | todo | Art_Assets/minigames/raw/ | Art_Assets/minigames/export/ | res://Art_Assets/minigames/ | UI + effects |
 | art_vip_alumni_01 | vip | VIP alumni owner/cat visuals | TBD | M4 | todo | Art_Assets/vip/raw/ | Art_Assets/vip/export/ | res://Art_Assets/vip/ | Happy aura compatible |
 
+## Hybrid 3D Core Set (M2.6)
+| asset_id | category | description | owner | milestone | status | source_path | export_path | engine_path | notes |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| art3d_floor_grid_01 | env3d | 3D floor + rest area block layout | TBD | M2.6 | done | Art_Assets/3d/kaykit/core_subset/ | Scenes/Prototype3D/ | res://Scenes/Prototype3D/MainLevel3D.tscn | Built via FloorBuilder3D |
+| art3d_decor_velvet_armchair_01 | decor3d | Velvet armchair 3D wrapper scene | TBD | M2.6 | done | Art_Assets/3d/kaykit/core_subset/ | Scenes/Prototype3D/Decor/ | res://Scenes/Prototype3D/Decor/VelvetArmchair3D.tscn | Replace mesh with KayKit source when imported |
+| art3d_decor_espresso_bar_01 | decor3d | Espresso bar 3D wrapper scene | TBD | M2.6 | done | Art_Assets/3d/kaykit/core_subset/ | Scenes/Prototype3D/Decor/ | res://Scenes/Prototype3D/Decor/EspressoBar3D.tscn | 2-cell footprint mapping in data |
+| art3d_decor_wall_shelf_01 | decor3d | Wall shelf 3D wrapper scene | TBD | M2.6 | done | Art_Assets/3d/kaykit/core_subset/ | Scenes/Prototype3D/Decor/ | res://Scenes/Prototype3D/Decor/WallShelf3D.tscn | Slot markers mapped in data |
+| art3d_decor_window_perch_01 | decor3d | Window perch 3D wrapper scene | TBD | M2.6 | done | Art_Assets/3d/kaykit/core_subset/ | Scenes/Prototype3D/Decor/ | res://Scenes/Prototype3D/Decor/WindowPerch3D.tscn | Slot markers mapped in data |
+
 ## Audio Assets
 | asset_id | category | description | owner | milestone | status | source_path | export_path | engine_path | notes |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |

@@ -1,0 +1,46 @@
+[
+  {
+    "decor_id": "velvet_armchair",
+    "mesh_scene": "res://Scenes/Prototype3D/Decor/VelvetArmchair3D.tscn",
+    "footprint": [[0, 0]],
+    "pivot_offset": [0.0, 0.0, 0.0],
+    "rotations": [0, 90, 180, 270],
+    "slot_markers": {
+      "patron": [[0, 1]],
+      "cat": [[-1, 0]]
+    }
+  },
+  {
+    "decor_id": "espresso_bar",
+    "mesh_scene": "res://Scenes/Prototype3D/Decor/EspressoBar3D.tscn",
+    "footprint": [[0, 0], [1, 0]],
+    "pivot_offset": [0.0, 0.0, 0.0],
+    "rotations": [0, 90, 180, 270],
+    "slot_markers": {
+      "patron": [[0, 1], [1, 1]],
+      "cat": [[0, -1]]
+    }
+  },
+  {
+    "decor_id": "wall_shelf",
+    "mesh_scene": "res://Scenes/Prototype3D/Decor/WallShelf3D.tscn",
+    "footprint": [[0, 0]],
+    "pivot_offset": [0.0, 0.0, 0.0],
+    "rotations": [0, 90, 180, 270],
+    "slot_markers": {
+      "patron": [[1, 0]],
+      "cat": [[0, 1]]
+    }
+  },
+  {
+    "decor_id": "window_perch",
+    "mesh_scene": "res://Scenes/Prototype3D/Decor/WindowPerch3D.tscn",
+    "footprint": [[0, 0]],
+    "pivot_offset": [0.0, 0.0, 0.0],
+    "rotations": [0, 90, 180, 270],
+    "slot_markers": {
+      "patron": [[1, 0]],
+      "cat": [[0, 1]]
+    }
+  }
+]

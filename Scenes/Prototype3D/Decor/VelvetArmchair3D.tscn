@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3]
+
+[sub_resource type="BoxMesh" id="1"]
+size = Vector3(0.8, 0.65, 0.8)
+
+[node name="VelvetArmchair3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("1")
+position = Vector3(0, 0.33, 0)

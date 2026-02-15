@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="CatCafe"
-run/main_scene="res://Scenes/Prototype/IsometricPrototype.tscn"
+run/main_scene="res://Scenes/Prototype3D/MainLevel3D.tscn"
 config/features=PackedStringArray("4.6")
 
 [display]

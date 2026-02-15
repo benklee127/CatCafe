@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://Scripts/prototype3d/MainLevel3D.gd" id="1"]
+[ext_resource type="Script" path="res://Scripts/prototype3d/FloorBuilder3D.gd" id="2"]
+[ext_resource type="Script" path="res://Scripts/prototype3d/DecorPlacement3D.gd" id="3"]
+[ext_resource type="Script" path="res://Scripts/prototype3d/SlotManager3D.gd" id="4"]
+[ext_resource type="Script" path="res://Scripts/data/DataLoader.gd" id="5"]
+
+[node name="MainLevel3D" type="Node3D"]
+script = ExtResource("1")
+iso_pitch_degrees = 25.0
+iso_distance_multiplier = 2.2
+
+[node name="DataLoader" type="Node" parent="."]
+script = ExtResource("5")
+
+[node name="WorldRoot" type="Node3D" parent="."]
+
+[node name="FloorGrid" type="Node3D" parent="WorldRoot"]
+script = ExtResource("2")
+
+[node name="DecorLayer3D" type="Node3D" parent="WorldRoot"]
+
+[node name="ActorLayer3D" type="Node3D" parent="WorldRoot"]
+
+[node name="CatLayer" type="Node3D" parent="WorldRoot/ActorLayer3D"]
+
+[node name="PatronLayer" type="Node3D" parent="WorldRoot/ActorLayer3D"]
+
+[node name="Debug3D" type="Node3D" parent="WorldRoot"]
+
+[node name="DecorPlacement3D" type="Node3D" parent="."]
+script = ExtResource("3")
+selected_decor_id = "velvet_armchair"
+
+[node name="SlotManager3D" type="Node" parent="."]
+script = ExtResource("4")
+
+[node name="CameraRig" type="Node3D" parent="."]
+position = Vector3(0, 0, 0)
+rotation_degrees = Vector3(-35, 45, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraRig"]
+position = Vector3(0, 18, 18)
+current = true
+fov = 35.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-50, 30, 0)
+light_energy = 1.2

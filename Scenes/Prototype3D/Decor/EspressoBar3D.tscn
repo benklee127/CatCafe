@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3]
+
+[sub_resource type="BoxMesh" id="1"]
+size = Vector3(2.4, 0.9, 0.9)
+
+[node name="EspressoBar3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("1")
+position = Vector3(0.625, 0.45, 0)

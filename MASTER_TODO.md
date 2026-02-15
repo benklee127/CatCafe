@@ -61,6 +61,11 @@ _Last updated: 2026-02-14_
 - [x] Add seed data: 6 traits, 3 patron archetypes, 12 decor items.
 - [x] Implement procedural cat generation with rarity weighting.
 - [x] Bind trait and patron impacts into overstim pressure.
+- [x] Scaffold hybrid 3D runtime path in `Scenes/Prototype3D/MainLevel3D.tscn`.
+- [x] Add data contract and seed mapping file: `Data/decor_mesh_map.json`.
+- [x] Implement 3D decor placement/removal with rotation preview and grid occupancy.
+- [x] Port cat/patron core movement + slot behavior to 3D billboard actor scenes.
+- [x] Add manual test script `Tests/M2_6_hybrid3d_core_loop.md`.
 - [x] Implement isometric blocked-cell navigation for decor-aware pathing.
 - [x] Implement interaction slot claim/release system for decor usage markers.
 - [x] Enable y-sorted runtime layering for decor, cats, and patrons.
