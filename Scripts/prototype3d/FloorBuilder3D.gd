@@ -1,11 +1,6 @@
 extends Node3D
 class_name FloorBuilder3D
 
-const KAYKIT_WALL_SCENE: String = "res://Art_Assets/3d/kaykit/core_subset/Primitive_Wall.gltf"
-const WALL_BASE_LENGTH: float = 4.0
-const WALL_BASE_THICKNESS: float = 1.0
-const WALL_BASE_HEIGHT: float = 4.0
-
 var _floor_material: StandardMaterial3D
 var _rest_material: StandardMaterial3D
 var _wall_material: StandardMaterial3D
@@ -54,7 +49,7 @@ func _build_rest_partition(level) -> void:
 				wall.material_override = _wall_material
 				var a: Vector3 = level.map_to_world(rest_cell)
 				var b: Vector3 = level.map_to_world(n)
-				wall.position = (a + b) * 0.5 + Vector3(0.02, 0.33, 0.02)
+				wall.position = (a + b) * 0.5 + Vector3(0.0, 0.33, 0.0)
 				add_child(wall)
 
 func _ensure_materials() -> void:
@@ -79,14 +74,11 @@ func _build_grid_lines(level) -> void:
 	var line_width: float = maxf(0.01, minf(level.cell_width_3d, level.cell_depth_3d) * float(level.grid_line_width_ratio))
 	var y_offset: float = float(level.grid_line_height_offset)
 
-	var min_cell: Vector2i = level.cafe_floor_rect.position
-	var max_cell: Vector2i = level.cafe_floor_rect.end - Vector2i.ONE
-	var a: Vector3 = level.map_to_world(min_cell)
-	var b: Vector3 = level.map_to_world(max_cell)
-	var min_x: float = minf(a.x, b.x) - level.cell_width_3d * 0.5
-	var max_x: float = maxf(a.x, b.x) + level.cell_width_3d * 0.5
-	var min_z: float = minf(a.z, b.z) - level.cell_depth_3d * 0.5
-	var max_z: float = maxf(a.z, b.z) + level.cell_depth_3d * 0.5
+	var bounds: Dictionary = level.get_floor_world_bounds()
+	var min_x: float = float(bounds.get("min_x", 0.0))
+	var max_x: float = float(bounds.get("max_x", 0.0))
+	var min_z: float = float(bounds.get("min_z", 0.0))
+	var max_z: float = float(bounds.get("max_z", 0.0))
 	var width: float = max_x - min_x
 	var depth: float = max_z - min_z
 
@@ -107,51 +99,33 @@ func _add_grid_line(center: Vector3, size: Vector3) -> void:
 	add_child(line)
 
 func _build_back_walls(level) -> void:
-	var wall_scene: PackedScene = load(KAYKIT_WALL_SCENE)
-	if wall_scene == null:
-		return
+	var bounds: Dictionary = level.get_floor_world_bounds()
+	var min_x: float = float(bounds.get("min_x", 0.0))
+	var max_x: float = float(bounds.get("max_x", 0.0))
+	var min_z: float = float(bounds.get("min_z", 0.0))
+	var max_z: float = float(bounds.get("max_z", 0.0))
+	var wall_height: float = maxf(1.3, level.rest_tile_height_3d * 5.0)
+	var wall_thickness: float = maxf(0.12, minf(level.cell_width_3d, level.cell_depth_3d) * 0.22)
+	var wall_center_y: float = wall_height * 0.5 - maxf(level.floor_tile_height_3d, level.rest_tile_height_3d) * 0.15
 
-	var min_cell: Vector2i = level.cafe_floor_rect.position
-	var max_cell: Vector2i = level.cafe_floor_rect.end - Vector2i.ONE
-	var a: Vector3 = level.map_to_world(min_cell)
-	var b: Vector3 = level.map_to_world(max_cell)
+	for gx in range(level.cafe_floor_rect.position.x, level.cafe_floor_rect.end.x):
+		var cell_center: Vector3 = level.map_to_world(Vector2i(gx, level.cafe_floor_rect.position.y))
+		var north_center := Vector3(cell_center.x, wall_center_y, min_z - wall_thickness * 0.5)
+		_add_wall_segment_box(north_center, Vector3(level.cell_width_3d, wall_height, wall_thickness))
 
-	var min_x: float = minf(a.x, b.x) - level.cell_width_3d * 0.5
-	var max_x: float = maxf(a.x, b.x) + level.cell_width_3d * 0.5
-	var min_z: float = minf(a.z, b.z) - level.cell_depth_3d * 0.5
-	var max_z: float = maxf(a.z, b.z) + level.cell_depth_3d * 0.5
+	for gy in range(level.cafe_floor_rect.position.y, level.cafe_floor_rect.end.y):
+		var cell_center: Vector3 = level.map_to_world(Vector2i(level.cafe_floor_rect.position.x, gy))
+		var west_center := Vector3(min_x - wall_thickness * 0.5, wall_center_y, cell_center.z)
+		_add_wall_segment_box(west_center, Vector3(wall_thickness, wall_height, level.cell_depth_3d))
 
-	var span_x: float = max_x - min_x
-	var span_z: float = max_z - min_z
-	var wall_height: float = maxf(1.3, level.rest_tile_height_3d * 3.0)
-	var wall_thickness: float = maxf(0.25, minf(level.cell_width_3d, level.cell_depth_3d) * 0.38)
-	var drop_down: float = maxf(level.floor_tile_height_3d, level.rest_tile_height_3d) * 0.55
+	var corner_center := Vector3(min_x - wall_thickness * 0.5, wall_center_y, min_z - wall_thickness * 0.5)
+	_add_wall_segment_box(corner_center, Vector3(wall_thickness, wall_height, wall_thickness))
 
-	var north_center := Vector3((min_x + max_x) * 0.5, -drop_down, min_z - wall_thickness * 0.5)
-	_spawn_kaykit_wall(wall_scene, north_center, span_x, wall_thickness, wall_height, false)
-
-	var west_center := Vector3(min_x - wall_thickness * 0.5, -drop_down, (min_z + max_z) * 0.5)
-	_spawn_kaykit_wall(wall_scene, west_center, span_z, wall_thickness, wall_height, true)
-	_build_back_corner_cap(wall_scene, Vector3(min_x - wall_thickness * 0.5, -drop_down, min_z - wall_thickness * 0.5), wall_thickness, wall_height)
-
-func _spawn_kaykit_wall(scene: PackedScene, center: Vector3, length: float, thickness: float, height: float, rotate_90: bool) -> void:
-	var wall: Node3D = scene.instantiate()
+func _add_wall_segment_box(center: Vector3, size: Vector3) -> void:
+	var wall := MeshInstance3D.new()
+	var wall_mesh := BoxMesh.new()
+	wall_mesh.size = size
+	wall.mesh = wall_mesh
+	wall.material_override = _wall_material
 	wall.position = center
-	if rotate_90:
-		wall.rotation_degrees.y = 90.0
-	wall.scale = Vector3(
-		length / WALL_BASE_LENGTH,
-		height / WALL_BASE_HEIGHT,
-		thickness / WALL_BASE_THICKNESS
-	)
 	add_child(wall)
-
-func _build_back_corner_cap(scene: PackedScene, corner_center: Vector3, thickness: float, height: float) -> void:
-	var cap: Node3D = scene.instantiate()
-	cap.position = corner_center
-	cap.scale = Vector3(
-		thickness / WALL_BASE_LENGTH,
-		height / WALL_BASE_HEIGHT,
-		thickness / WALL_BASE_THICKNESS
-	)
-	add_child(cap)

@@ -32,6 +32,7 @@ func _process(delta: float) -> void:
 	if level == null:
 		return
 	grid_position = level.world_to_map(global_position)
+	_resolve_if_embedded()
 	_update_state(delta)
 	_follow_path(delta)
 	_face_camera()
@@ -92,6 +93,13 @@ func _follow_path(delta: float) -> void:
 	if path.is_empty():
 		return
 	var next_grid: Vector2i = path[0]
+	if not level.is_walkable(next_grid, false):
+		path.clear()
+		if state == USING_SLOT:
+			_release_slot()
+		state = WANDER
+		retarget_timer = 0.0
+		return
 	var next_world: Vector3 = level.map_to_world(next_grid) + Vector3(0, level.actor_y_offset, 0)
 	var step: Vector3 = next_world - global_position
 	step.y = 0.0
@@ -101,7 +109,24 @@ func _follow_path(delta: float) -> void:
 		grid_position = next_grid
 		path.remove_at(0)
 		return
-	global_position += step.normalized() * move_speed * delta
+	var travel: float = minf(dist, move_speed * delta)
+	global_position += step.normalized() * travel
+
+func _resolve_if_embedded() -> void:
+	if level.is_walkable(grid_position, false):
+		return
+	var dirs: Array[Vector2i] = [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1)]
+	for d in dirs:
+		var candidate: Vector2i = grid_position + d
+		if level.is_walkable(candidate, false):
+			grid_position = candidate
+			global_position = level.map_to_world(candidate) + Vector3(0, level.actor_y_offset, 0)
+			path.clear()
+			if state == USING_SLOT:
+				_release_slot()
+			state = WANDER
+			retarget_timer = 0.0
+			return
 
 func _release_slot() -> void:
 	if level != null:

@@ -50,6 +50,7 @@ func _process(delta: float) -> void:
 	if level == null:
 		return
 	grid_position = level.world_to_map(global_position)
+	_resolve_if_embedded()
 	var nearby: int = level.get_patrons_near(global_position, interaction_radius)
 	_update_overstim(delta, nearby)
 	_update_state(nearby)
@@ -140,6 +141,18 @@ func _follow_path(delta: float) -> void:
 	if path.is_empty():
 		return
 	var next_grid: Vector2i = path[0]
+	var allow_rest: bool = state == RETREATING or state == REST
+	if not level.is_walkable(next_grid, allow_rest):
+		path.clear()
+		if state == INTERACTING:
+			_release_slot()
+			state = IDLE
+			idle_timer = rng.randf_range(idle_duration_min, idle_duration_max)
+		elif state == WANDER:
+			retarget_timer = 0.0
+		elif state == RETREATING:
+			_begin_retreat()
+		return
 	var next_world: Vector3 = level.map_to_world(next_grid) + Vector3(0, level.actor_y_offset, 0)
 	var step: Vector3 = next_world - global_position
 	step.y = 0.0
@@ -149,7 +162,25 @@ func _follow_path(delta: float) -> void:
 		grid_position = next_grid
 		path.remove_at(0)
 		return
-	global_position += step.normalized() * move_speed * delta
+	var travel: float = minf(distance, move_speed * delta)
+	global_position += step.normalized() * travel
+
+func _resolve_if_embedded() -> void:
+	var allow_rest: bool = state == RETREATING or state == REST
+	if level.is_walkable(grid_position, allow_rest):
+		return
+	var dirs: Array[Vector2i] = [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1)]
+	for d in dirs:
+		var candidate: Vector2i = grid_position + d
+		if level.is_walkable(candidate, allow_rest):
+			grid_position = candidate
+			global_position = level.map_to_world(candidate) + Vector3(0, level.actor_y_offset, 0)
+			path.clear()
+			if state == INTERACTING:
+				_release_slot()
+				state = IDLE
+				idle_timer = rng.randf_range(idle_duration_min, idle_duration_max)
+			return
 
 func _begin_retreat() -> void:
 	_release_slot()

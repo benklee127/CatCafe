@@ -1,0 +1,62 @@
+[
+  {
+    "id": "velvet_armchair",
+    "name": "Velvet Armchair",
+    "color": "Burgundy",
+    "durability": 92
+  },
+  {
+    "id": "espresso_bar",
+    "name": "Espresso Bar",
+    "color": "Walnut",
+    "durability": 88
+  },
+  {
+    "id": "wall_shelf",
+    "name": "Wall Shelf",
+    "color": "Oak",
+    "durability": 75
+  },
+  {
+    "id": "window_perch",
+    "name": "Window Perch",
+    "color": "Cream",
+    "durability": 81
+  },
+  {
+    "id": "book_nook",
+    "name": "Book Nook",
+    "color": "Cedar",
+    "durability": 84
+  },
+  {
+    "id": "tea_station",
+    "name": "Tea Station",
+    "color": "Honey Oak",
+    "durability": 79
+  },
+  {
+    "id": "plant_partition",
+    "name": "Plant Partition",
+    "color": "Forest Green",
+    "durability": 90
+  },
+  {
+    "id": "table_medium",
+    "name": "table_medium",
+    "color": "Prototype Blue",
+    "durability": 80
+  },
+  {
+    "id": "pallet_large",
+    "name": "Pallet_Large",
+    "color": "Prototype Gray",
+    "durability": 82
+  },
+  {
+    "id": "primitive_wall_half",
+    "name": "Primitive_Wall_Half",
+    "color": "Prototype Brown",
+    "durability": 95
+  }
+]
