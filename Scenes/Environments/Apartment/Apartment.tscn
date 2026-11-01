@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://Scripts/environments/apartment/apartment.gd" id="1"]
+
+[sub_resource type="Environment" id="Environment_evening"]
+background_mode = 1
+background_color = Color(0.168627, 0.129412, 0.160784, 1)
+ambient_light_source = 2
+ambient_light_color = Color(1, 0.86, 0.74, 1)
+ambient_light_energy = 0.45
+tonemap_mode = 2
+tonemap_exposure = 1.05
+tonemap_white = 6.0
+ssao_enabled = true
+ssao_radius = 0.6
+ssao_intensity = 1.5
+ssao_power = 1.5
+glow_enabled = true
+glow_intensity = 0.45
+glow_bloom = 0.06
+glow_hdr_threshold = 1.1
+adjustment_enabled = true
+adjustment_saturation = 1.05
+
+[node name="Apartment" type="Node3D"]
+script = ExtResource("1")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_evening")
+
+[node name="MoonLight" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-48, 225, 0)
+light_color = Color(0.94, 0.85, 0.82, 1)
+light_energy = 0.45
+shadow_enabled = true
+shadow_blur = 1.5
+directional_shadow_mode = 1
+directional_shadow_max_distance = 60.0
