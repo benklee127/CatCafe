@@ -1,182 +1,122 @@
 [
   {
     "decor_id": "velvet_armchair",
-    "mesh_scene": "res://Art_Assets/3d/kaykit/core_subset/table_medium_Decorated.gltf",
-    "footprint": [[-1, 0], [0, 0], [1, 0], [-1, 1], [0, 1], [1, 1]],
-    "blocking_footprint": [[-1, 0], [0, 0], [1, 0], [-1, 1], [0, 1], [1, 1]],
+    "mesh_scene": "res://Scenes/Prototype3D/Decor/VelvetArmchair3D.tscn",
+    "grid_unit": 1,
+    "scale": [1.0, 1.0, 1.0],
+    "footprint": [[0, 0], [1, 0], [2, 0], [0, 1], [1, 1], [2, 1]],
     "pivot_offset": [0.0, 0.0, 0.0],
     "rotations": [0, 90, 180, 270],
-    "slot_markers": {
-      "patron": [[0, 2]],
-      "cat": [[2, 1]]
-    }
+    "slot_markers": {"patron": [[1, 2]], "cat": [[3, 0]]}
   },
   {
     "decor_id": "espresso_bar",
-    "mesh_scene": "res://Art_Assets/3d/kaykit/core_subset/table_medium_long.gltf",
-    "footprint": [[-1, 0], [0, 0], [1, 0], [2, 0], [-1, 1], [0, 1], [1, 1], [2, 1]],
-    "blocking_footprint": [[-1, 0], [0, 0], [1, 0], [2, 0], [-1, 1], [0, 1], [1, 1], [2, 1]],
+    "mesh_scene": "res://Scenes/Prototype3D/Decor/EspressoBar3D.tscn",
+    "grid_unit": 1,
+    "scale": [1.0, 1.0, 1.0],
+    "footprint": [[0, 0], [1, 0], [2, 0], [3, 0], [0, 1], [1, 1], [2, 1], [3, 1]],
     "pivot_offset": [0.0, 0.0, 0.0],
     "rotations": [0, 90, 180, 270],
-    "slot_markers": {
-      "patron": [[0, 2], [1, 2]],
-      "cat": [[0, -1]]
-    }
+    "slot_markers": {"patron": [[1, 2], [2, 2]], "cat": [[4, 0]]}
   },
   {
     "decor_id": "wall_shelf",
-    "mesh_scene": "res://Art_Assets/3d/kaykit/core_subset/Pallet_Small.gltf",
-    "footprint": [[-1, 0], [0, 0], [1, 0], [-1, 1], [0, 1], [1, 1], [-1, 2], [0, 2], [1, 2]],
-    "blocking_footprint": [[-1, 0], [0, 0], [1, 0], [-1, 1], [0, 1], [1, 1], [-1, 2], [0, 2], [1, 2]],
+    "mesh_scene": "res://Scenes/Prototype3D/Decor/WallShelf3D.tscn",
+    "grid_unit": 1,
+    "scale": [1.0, 1.0, 1.0],
+    "footprint": [[0, 0], [1, 0], [0, 1], [1, 1]],
     "pivot_offset": [0.0, 0.0, 0.0],
     "rotations": [0, 90, 180, 270],
-    "slot_markers": {
-      "patron": [[2, 1]],
-      "cat": [[0, 3]]
-    }
+    "slot_markers": {"patron": [[2, 0]], "cat": [[1, 2]]}
   },
   {
     "decor_id": "window_perch",
-    "mesh_scene": "res://Art_Assets/3d/kaykit/core_subset/Primitive_Window.gltf",
-    "footprint": [[-2, 0], [-1, 0], [0, 0], [1, 0], [2, 0]],
-    "blocking_footprint": [[-2, 0], [-1, 0], [0, 0], [1, 0], [2, 0]],
+    "mesh_scene": "res://Scenes/Prototype3D/Decor/WindowPerch3D.tscn",
+    "grid_unit": 1,
+    "scale": [1.0, 1.0, 1.0],
+    "footprint": [[0, 0], [1, 0], [2, 0], [3, 0], [4, 0]],
     "pivot_offset": [0.0, 0.0, 0.0],
     "rotations": [0, 90, 180, 270],
-    "slot_markers": {
-      "patron": [[0, 1]],
-      "cat": [[0, 1]]
-    }
+    "slot_markers": {"patron": [[1, 1]], "cat": [[3, 1]]}
   },
   {
     "decor_id": "book_nook",
-    "mesh_scene": "res://Art_Assets/3d/kaykit/core_subset/Pallet_Large.gltf",
+    "mesh_scene": "res://Scenes/Prototype3D/Decor/BookNook3D.tscn",
+    "grid_unit": 1,
+    "scale": [1.0, 1.0, 1.0],
     "footprint": [[0, 0], [1, 0], [0, 1], [1, 1]],
-    "blocking_footprint": [[0, 0], [1, 0], [0, 1], [1, 1]],
     "pivot_offset": [0.0, 0.0, 0.0],
     "rotations": [0, 90, 180, 270],
-    "slot_markers": {
-      "patron": [[2, 0], [2, 1]],
-      "cat": [[-1, 0], [-1, 1]]
-    }
+    "slot_markers": {"patron": [[2, 0], [2, 1]], "cat": [[-1, 0], [-1, 1]]}
   },
   {
     "decor_id": "tea_station",
-    "mesh_scene": "res://Art_Assets/3d/kaykit/core_subset/table_medium.gltf",
-    "footprint": [[-1, 0], [0, 0], [1, 0], [-1, 1], [0, 1], [1, 1]],
-    "blocking_footprint": [[-1, 0], [0, 0], [1, 0], [-1, 1], [0, 1], [1, 1]],
+    "mesh_scene": "res://Scenes/Prototype3D/Decor/TeaStation3D.tscn",
+    "grid_unit": 1,
+    "scale": [1.0, 1.0, 1.0],
+    "footprint": [[0, 0], [1, 0], [2, 0], [0, 1], [1, 1], [2, 1]],
     "pivot_offset": [0.0, 0.0, 0.0],
     "rotations": [0, 90, 180, 270],
-    "slot_markers": {
-      "patron": [[0, 2], [1, 2]],
-      "cat": [[0, -1]]
-    }
+    "slot_markers": {"patron": [[0, 2], [2, 2]], "cat": [[3, 1]]}
   },
   {
     "decor_id": "plant_partition",
-    "mesh_scene": "res://Art_Assets/3d/kaykit/core_subset/Primitive_Wall_Half.gltf",
-    "footprint": [[-1, 0], [0, 0], [1, 0]],
-    "blocking_footprint": [[-1, 0], [0, 0], [1, 0]],
+    "mesh_scene": "res://Scenes/Prototype3D/Decor/PlantPartition3D.tscn",
+    "grid_unit": 1,
+    "scale": [1.0, 1.0, 1.0],
+    "footprint": [[0, 0], [1, 0], [2, 0]],
     "pivot_offset": [0.0, 0.0, 0.0],
     "rotations": [0, 90, 180, 270],
-    "slot_markers": {
-      "patron": [],
-      "cat": []
-    }
+    "slot_markers": {"patron": [], "cat": []}
   },
   {
     "decor_id": "heating_pad",
-    "mesh_scene": "res://Art_Assets/3d/kaykit/core_subset/Pallet_Small.gltf",
+    "mesh_scene": "res://Scenes/Prototype3D/Decor/HeatingPad3D.tscn",
+    "grid_unit": 1,
+    "scale": [1.0, 1.0, 1.0],
     "footprint": [[0, 0]],
-    "blocking_footprint": [[0, 0]],
     "pivot_offset": [0.0, 0.0, 0.0],
     "rotations": [0, 90, 180, 270],
-    "slot_markers": {
-      "patron": [],
-      "cat": [[0, 1]]
-    }
+    "slot_markers": {"patron": [], "cat": [[0, 0]]}
   },
   {
     "decor_id": "cat_tunnel",
-    "mesh_scene": "res://Art_Assets/3d/kaykit/core_subset/Primitive_Wall_Half.gltf",
+    "mesh_scene": "res://Scenes/Prototype3D/Decor/CatTunnel3D.tscn",
+    "grid_unit": 1,
+    "scale": [1.0, 1.0, 1.0],
     "footprint": [[0, 0], [1, 0]],
-    "blocking_footprint": [[0, 0], [1, 0]],
     "pivot_offset": [0.0, 0.0, 0.0],
     "rotations": [0, 90, 180, 270],
-    "slot_markers": {
-      "patron": [],
-      "cat": [[0, 1], [1, 1]]
-    }
+    "slot_markers": {"patron": [], "cat": [[0, 1], [1, 1]]}
   },
   {
     "decor_id": "scratch_post",
-    "mesh_scene": "res://Art_Assets/3d/kaykit/core_subset/Primitive_Wall.gltf",
+    "mesh_scene": "res://Scenes/Prototype3D/Decor/ScratchPost3D.tscn",
+    "grid_unit": 1,
+    "scale": [1.0, 1.0, 1.0],
     "footprint": [[0, 0]],
-    "blocking_footprint": [[0, 0]],
     "pivot_offset": [0.0, 0.0, 0.0],
     "rotations": [0, 90, 180, 270],
-    "slot_markers": {
-      "patron": [],
-      "cat": [[1, 0]]
-    }
+    "slot_markers": {"patron": [], "cat": [[1, 0]]}
   },
   {
     "decor_id": "quiet_signage",
-    "mesh_scene": "res://Art_Assets/3d/kaykit/core_subset/Primitive_Window.gltf",
+    "mesh_scene": "res://Scenes/Prototype3D/Decor/QuietSignage3D.tscn",
+    "grid_unit": 1,
+    "scale": [1.0, 1.0, 1.0],
     "footprint": [[0, 0], [1, 0], [2, 0]],
-    "blocking_footprint": [[0, 0], [1, 0], [2, 0]],
     "pivot_offset": [0.0, 0.0, 0.0],
     "rotations": [0, 90, 180, 270],
-    "slot_markers": {
-      "patron": [],
-      "cat": [[1, 1]]
-    }
+    "slot_markers": {"patron": [], "cat": [[1, 1]]}
   },
   {
     "decor_id": "adoption_corner",
-    "mesh_scene": "res://Art_Assets/3d/kaykit/core_subset/Pallet_Large.gltf",
+    "mesh_scene": "res://Scenes/Prototype3D/Decor/AdoptionCorner3D.tscn",
+    "grid_unit": 1,
+    "scale": [1.0, 1.0, 1.0],
     "footprint": [[0, 0], [1, 0], [0, 1], [1, 1]],
-    "blocking_footprint": [[0, 0], [1, 0], [0, 1], [1, 1]],
     "pivot_offset": [0.0, 0.0, 0.0],
     "rotations": [0, 90, 180, 270],
-    "slot_markers": {
-      "patron": [[2, 0], [2, 1]],
-      "cat": [[-1, 0], [-1, 1]]
-    }
-  },
-  {
-    "decor_id": "table_medium",
-    "mesh_scene": "res://Art_Assets/3d/kaykit/core_subset/table_medium.gltf",
-    "footprint": [[-1, 0], [0, 0], [1, 0], [-1, 1], [0, 1], [1, 1]],
-    "blocking_footprint": [[-1, 0], [0, 0], [1, 0], [-1, 1], [0, 1], [1, 1]],
-    "pivot_offset": [0.0, 0.0, 0.0],
-    "rotations": [0, 90, 180, 270],
-    "slot_markers": {
-      "patron": [[0, 2], [1, 2]],
-      "cat": [[0, -1]]
-    }
-  },
-  {
-    "decor_id": "pallet_large",
-    "mesh_scene": "res://Art_Assets/3d/kaykit/core_subset/Pallet_Large.gltf",
-    "footprint": [[0, 0], [1, 0], [0, 1], [1, 1]],
-    "blocking_footprint": [[0, 0], [1, 0], [0, 1], [1, 1]],
-    "pivot_offset": [0.0, 0.0, 0.0],
-    "rotations": [0, 90, 180, 270],
-    "slot_markers": {
-      "patron": [[2, 0], [2, 1]],
-      "cat": [[-1, 0], [-1, 1]]
-    }
-  },
-  {
-    "decor_id": "primitive_wall_half",
-    "mesh_scene": "res://Art_Assets/3d/kaykit/core_subset/Primitive_Wall_Half.gltf",
-    "footprint": [[-1, 0], [0, 0], [1, 0]],
-    "blocking_footprint": [[-1, 0], [0, 0], [1, 0]],
-    "pivot_offset": [0.0, 0.0, 0.0],
-    "rotations": [0, 90, 180, 270],
-    "slot_markers": {
-      "patron": [],
-      "cat": []
-    }
+    "slot_markers": {"patron": [[2, 0], [2, 1]], "cat": [[-1, 0], [-1, 1]]}
   }
 ]

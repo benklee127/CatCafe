@@ -1,18 +1,41 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "RunState",
+  "description": "Saved run state. SaveSystem backfills missing keys from Data/run_state_template.json.",
   "type": "object",
   "required": ["save_version", "day", "time_of_day", "money", "reputation", "active_cats", "active_patrons", "adoptions_total", "placed_decor", "unlocked_content"],
   "properties": {
-    "save_version": {"type": "number"},
-    "day": {"type": "number"},
+    "save_version": {"type": "integer", "minimum": 0},
+    "day": {"type": "integer", "minimum": 1},
     "time_of_day": {"type": "string"},
-    "money": {"type": "number"},
-    "reputation": {"type": "number"},
-    "active_cats": {"type": "number"},
-    "active_patrons": {"type": "number"},
-    "adoptions_total": {"type": "number"},
-    "placed_decor": {"type": "array"},
+    "day_time_sec": {"type": "number", "minimum": 0},
+    "money": {"type": "integer"},
+    "reputation": {"type": "integer"},
+    "active_cats": {"type": "integer", "minimum": 0},
+    "active_patrons": {"type": "integer", "minimum": 0},
+    "adoptions_total": {"type": "integer", "minimum": 0},
+    "placed_decor": {"type": "array", "items": {"$ref": "#/$defs/placed_decor"}},
+    "cats": {"type": "array", "items": {"$ref": "CatDefinition.schema.json"}},
+    "run_seed": {"type": "integer"},
     "unlocked_content": {"type": "array", "items": {"type": "string"}}
+  },
+  "$defs": {
+    "placed_decor": {
+      "type": "object",
+      "required": ["decor_id"],
+      "properties": {
+        "decor_id": {"type": "string"},
+        "anchor": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "integer"}},
+        "rotation": {"type": "integer", "enum": [0, 90, 180, 270]},
+        "paid": {"type": "integer", "minimum": 0, "description": "What the player paid; Put away refunds half. 0 for starter items."},
+        "tile": {
+          "type": "object",
+          "description": "Legacy 2D prototype format.",
+          "required": ["x", "y"],
+          "additionalProperties": false,
+          "properties": {"x": {"type": "integer"}, "y": {"type": "integer"}}
+        }
+      }
+    }
   }
 }

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TrustStates",
+  "description": "balance_config.trust.states. Must be in ascending 'min' order and the last 'min' must equal trust.ready_threshold (checked by DataLoader).",
+  "type": "array",
+  "minItems": 1,
+  "items": {
+    "type": "object",
+    "required": ["id", "min"],
+    "additionalProperties": false,
+    "properties": {
+      "id": {"type": "string", "enum": ["fearful", "warming", "bonded", "adoptable"]},
+      "min": {"type": "number", "minimum": 0},
+      "overstim_mult": {"type": "number", "minimum": 0},
+      "seeks_slots": {"type": "boolean"}
+    }
+  }
+}

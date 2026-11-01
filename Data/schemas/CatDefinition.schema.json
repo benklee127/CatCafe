@@ -1,15 +1,36 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "CatDefinition",
+  "description": "Produced by CatFactory.generate_cat (contract 1.2). 'traits' holds deep-copied trait dicts for legacy consumers; 'trait_ids' is authoritative.",
   "type": "object",
   "required": ["id", "display_name", "rarity", "visual", "traits", "trust", "overstim"],
   "properties": {
     "id": {"type": "string"},
     "display_name": {"type": "string"},
     "rarity": {"type": "string", "enum": ["common", "uncommon", "rare"]},
-    "visual": {"type": "object"},
+    "trait_ids": {"type": "array", "items": {"type": "string"}},
     "traits": {"type": "array", "items": {"type": "object"}},
-    "trust": {"type": "object"},
-    "overstim": {"type": "object"}
+    "visual": {"$ref": "CatVisualPool.schema.json"},
+    "genome": {"$ref": "CatGenome.schema.json"},
+    "trust": {
+      "type": "object",
+      "required": ["current", "max"],
+      "properties": {
+        "current": {"type": "number", "minimum": 0},
+        "max": {"type": "number", "minimum": 1},
+        "ready_for_adoption": {"type": "boolean"},
+        "state": {"type": "string", "enum": ["fearful", "warming", "bonded", "adoptable"]}
+      }
+    },
+    "overstim": {
+      "type": "object",
+      "required": ["current", "max"],
+      "properties": {
+        "current": {"type": "number", "minimum": 0},
+        "max": {"type": "number", "minimum": 1}
+      }
+    },
+    "seed": {"type": "integer"},
+    "source": {"type": "string"}
   }
 }

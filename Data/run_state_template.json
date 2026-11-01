@@ -8,5 +8,7 @@
   "active_patrons": 0,
   "adoptions_total": 0,
   "placed_decor": [],
+  "cats": [],
+  "run_seed": 0,
   "unlocked_content": ["basic_layout"]
 }

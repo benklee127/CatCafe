@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://prototype_human_scene"]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource type="Script" path="res://Scripts/prototype/MainLevelPatron.gd" id="1_human_script"]
 [ext_resource type="Texture2D" path="res://Art_Assets/patrons/export/patron_placeholder_v001.png" id="2_human_texture"]

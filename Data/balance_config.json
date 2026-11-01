@@ -2,16 +2,56 @@
   "overstim": {
     "base_decay_per_sec": 4,
     "retreat_threshold": 100,
-    "rest_recovery_per_sec": 25
+    "rest_recovery_per_sec": 7,
+    "rest_release_threshold": 35,
+    "interaction_gain_per_sec": 11,
+    "crowd_mult": 0.35,
+    "trait_mult_min": 0.5,
+    "trait_mult_max": 2.0,
+    "min_rest_sec": 6,
+    "post_rest_grace_sec": 10,
+    "post_rest_gain_mult": 0.4
   },
   "trust": {
-    "daily_base_gain": 6,
-    "stress_penalty": 4,
-    "ready_threshold": 100
+    "daily_base_gain": 7,
+    "stress_penalty": 3,
+    "stress_repeat_window_sec": 60,
+    "stress_isolated_mult": 0.3,
+    "calm_interaction_bonus_per_sec": 0.03,
+    "rest_gain_mult": 0.5,
+    "ready_threshold": 100,
+    "start": 10,
+    "day_length_sec": 180,
+    "calm_overstim_ratio": 0.5,
+    "adoptable_hysteresis": 10,
+    "good_company_mult": 1.5,
+    "states": [
+      {"id": "fearful", "min": 0, "overstim_mult": 1.1, "seeks_slots": false},
+      {"id": "warming", "min": 25, "overstim_mult": 1.0, "seeks_slots": true},
+      {"id": "bonded", "min": 60, "overstim_mult": 0.85, "seeks_slots": true},
+      {"id": "adoptable", "min": 100, "overstim_mult": 0.85, "seeks_slots": true}
+    ]
   },
   "economy": {
     "base_tip": 3,
-    "adoption_reputation": 1,
-    "starting_money": 100
+    "adoption_reputation": 10,
+    "starting_money": 100,
+    "starting_reputation": 0
+  },
+  "population": {
+    "starting_cats": 3,
+    "patron_target_count": 4,
+    "patron_max_count": 6,
+    "patron_spawn_interval_sec": 8,
+    "day_length_sec": 180
+  },
+  "rarity_weights": {
+    "common": 0.85,
+    "uncommon": 0.12,
+    "rare": 0.03
+  },
+  "adoption_thresholds": {
+    "good": 0.5,
+    "neutral": 0.2
   }
 }

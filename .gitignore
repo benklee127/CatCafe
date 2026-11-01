@@ -1,7 +1,5 @@
-# Godot
-.import/
+# Godot (4.x: keep *.import and *.uid files under version control)
 .godot/
-*.import
 export_presets.cfg
 
 # Godot Mono/C#
@@ -22,3 +20,7 @@ user/
 logs/
 *.log
 *.tmp
+
+# Tool scratch
+__pycache__/
+Tools/_tmp/

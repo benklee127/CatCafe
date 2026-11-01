@@ -1,0 +1,8 @@
+[
+  {"id":"shelter","display_name":"Partner Shelter","cost_money":20,"time_cost_hours":0,"initial_trust":[30,45],
+   "rarity_weights":{"common":0.95,"uncommon":0.05,"rare":0.0},"trait_bias":{"stoic":1.5},"event_chance_per_day":0.0},
+  {"id":"alley","display_name":"Back Alley","cost_money":0,"time_cost_hours":2,"initial_trust":[5,20],
+   "rarity_weights":{"common":0.75,"uncommon":0.18,"rare":0.07},"trait_bias":{},"event_chance_per_day":0.0},
+  {"id":"doorstep_event","display_name":"Doorstep Surprise","cost_money":0,"time_cost_hours":0,"initial_trust":[0,10],
+   "rarity_weights":{"common":0.85,"uncommon":0.12,"rare":0.03},"trait_bias":{"timid":2.0},"event_chance_per_day":0.15}
+]

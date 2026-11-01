@@ -1,10 +1,16 @@
 [
   {
     "id": "room_tier1",
-    "tile_width": 24,
-    "tile_height": 18,
-    "rest_area_tile": {"x": 22, "y": 1},
-    "patron_spawns": [{"x": 2, "y": 2}, {"x": 3, "y": 4}],
-    "cat_spawns": [{"x": 8, "y": 8}, {"x": 10, "y": 6}, {"x": 12, "y": 9}]
+    "tier": 1,
+    "grid_unit": 1,
+    "cafe_floor_rect": {"x": 0, "y": 0, "w": 12, "h": 10},
+    "rest_area_rect": {"x": 0, "y": 0, "w": 4, "h": 4},
+    "rest_door_cells": [{"x": 4, "y": 1}, {"x": 4, "y": 2}],
+    "entrance_cell": {"x": 11, "y": 5},
+    "patron_spawns": [{"x": 11, "y": 5}],
+    "cat_spawns": [{"x": 6, "y": 5}, {"x": 8, "y": 4}, {"x": 7, "y": 7}],
+    "tile_width": 12,
+    "tile_height": 10,
+    "rest_area_tile": {"x": 2, "y": 2}
   }
 ]

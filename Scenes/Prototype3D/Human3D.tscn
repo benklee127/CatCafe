@@ -1,20 +1,88 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Script" path="res://Scripts/prototype3d/MainLevelPatron3D.gd" id="1"]
 [ext_resource type="Texture2D" path="res://Art_Assets/patrons/export/patron_placeholder_v001.png" id="2"]
 
-[sub_resource type="SphereShape3D" id="1"]
-radius = 0.32
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_body"]
+radius = 0.25
+height = 1.5
 
-[node name="Human3D" type="Node3D"]
+[sub_resource type="Shader" id="Shader_blob"]
+code = "shader_type spatial;
+render_mode unshaded, cull_disabled, depth_draw_never, shadows_disabled;
+
+uniform vec4 shadow_color : source_color = vec4(0.16, 0.10, 0.08, 0.42);
+
+void fragment() {
+	float d = length(UV - vec2(0.5)) * 2.0;
+	float a = 1.0 - smoothstep(0.45, 1.0, d);
+	ALBEDO = shadow_color.rgb;
+	ALPHA = shadow_color.a * a;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_blob"]
+render_priority = -1
+shader = SubResource("Shader_blob")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_blob"]
+material = SubResource("ShaderMaterial_blob")
+size = Vector2(0.72, 0.46)
+
+[node name="Human3D" type="CharacterBody3D"]
+collision_layer = 4
+collision_mask = 0
+motion_mode = 1
 script = ExtResource("1")
 
-[node name="Sprite3D" type="Sprite3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("CapsuleShape3D_body")
+
+[node name="BlobShadow" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.013, 0)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_blob")
+
+[node name="ArtViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+msaa_2d = 2
+gui_disable_input = true
+size = Vector2i(192, 320)
+render_target_update_mode = 1
+
+[node name="BillboardAnchor" type="Node3D" parent="."]
+
+[node name="Sprite3D" type="Sprite3D" parent="BillboardAnchor"]
+cast_shadow = 0
+offset = Vector2(0, 160)
+pixel_size = 0.005
+billboard = 2
+alpha_cut = 1
+texture_filter = 1
+
+[node name="FallbackSprite3D" type="Sprite3D" parent="BillboardAnchor"]
+visible = false
+cast_shadow = 0
+offset = Vector2(0, 32)
+pixel_size = 0.024
+billboard = 2
+alpha_cut = 1
+texture_filter = 0
 texture = ExtResource("2")
-pixel_size = 0.01
-position = Vector3(0, 0.45, 0)
 
-[node name="InteractionArea3D" type="Area3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea3D"]
-shape = SubResource("1")
+[node name="TipLabel" type="Label3D" parent="BillboardAnchor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+visible = false
+cast_shadow = 0
+pixel_size = 0.006
+billboard = 1
+no_depth_test = true
+render_priority = 3
+outline_render_priority = 2
+modulate = Color(1, 0.86, 0.42, 1)
+outline_modulate = Color(0.29, 0.2, 0.15, 1)
+text = "+$3"
+font_size = 44
+outline_size = 12

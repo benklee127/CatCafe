@@ -7,6 +7,10 @@ enum CatState { WANDER, RETREAT, REST }
 @export var rest_duration: float = 4.0
 
 var definition: Dictionary = {}
+## Contents of balance_config.json (set by the spawner before add_child). Missing keys use the defaults below.
+var balance: Dictionary = {}
+## Per-agent seed handed down from the scene rng. 0 means "randomize".
+var rng_seed: int = 0
 var world_bounds := Rect2(Vector2(180, 180), Vector2(1200, 560))
 var rest_point: Vector2 = Vector2(1280, 180)
 var overstim: float = 0.0
@@ -17,13 +21,29 @@ var _rest_timer: float = 0.0
 var rng := RandomNumberGenerator.new()
 
 func _ready() -> void:
-	rng.randomize()
+	if rng_seed != 0:
+		rng.seed = rng_seed
+	else:
+		rng.randomize()
+	var overstim_cfg: Dictionary = balance.get("overstim", {})
+	overstim_max = float(overstim_cfg.get("retreat_threshold", overstim_max))
+	var trust_cfg: Dictionary = balance.get("trust", {})
+	var def_trust: Variant = definition.get("trust", null)
+	if def_trust is Dictionary:
+		trust = float((def_trust as Dictionary).get("current", trust_cfg.get("start", trust)))
+	else:
+		trust = float(trust_cfg.get("start", trust))
 	_target = _pick_target()
 	queue_redraw()
+
+func _overstim_cfg(key: String, fallback: float) -> float:
+	var cfg: Dictionary = balance.get("overstim", {})
+	return float(cfg.get(key, fallback))
 
 func _process(delta: float) -> void:
 	match state:
 		CatState.WANDER:
+			overstim = max(0.0, overstim - _overstim_cfg("base_decay_per_sec", 4.0) * delta)
 			_move_toward(_target, delta)
 			if global_position.distance_to(_target) < 10.0:
 				_target = _pick_target()
@@ -34,8 +54,8 @@ func _process(delta: float) -> void:
 				_rest_timer = rest_duration
 		CatState.REST:
 			_rest_timer -= delta
-			overstim = max(0.0, overstim - 25.0 * delta)
-			if _rest_timer <= 0.0:
+			overstim = max(0.0, overstim - _overstim_cfg("rest_recovery_per_sec", 25.0) * delta)
+			if _rest_timer <= 0.0 and overstim <= _overstim_cfg("rest_release_threshold", 35.0):
 				state = CatState.WANDER
 				_target = _pick_target()
 	queue_redraw()
@@ -65,7 +85,7 @@ func _trait_overstim_mult() -> float:
 	var m := 1.0
 	for t in definition.get("traits", []):
 		m *= float(t.get("overstim_rate_mult", 1.0))
-	return clamp(m, 0.5, 2.0)
+	return clamp(m, _overstim_cfg("trait_mult_min", 0.5), _overstim_cfg("trait_mult_max", 2.0))
 
 func _draw() -> void:
 	var color := Color(0.2, 0.55, 1.0)

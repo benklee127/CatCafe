@@ -3,8 +3,9 @@
   "tasks": [
     {
       "label": "Validate Data (Godot)",
-      "type": "shell",
-      "command": "godot4 --headless --script res://Tools/validate_data.gd",
+      "type": "process",
+      "command": "${env:LOCALAPPDATA}/Microsoft/WinGet/Packages/GodotEngine.GodotEngine_Microsoft.Winget.Source_8wekyb3d8bbwe/Godot_v4.6-stable_win64_console.exe",
+      "args": ["--headless", "--path", "${workspaceFolder}", "--script", "res://Tools/validate_data.gd"],
       "problemMatcher": []
     }
   ]

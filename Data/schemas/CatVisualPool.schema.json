@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CatVisualPool",
+  "description": "One entry of Data/cat_visual_pool.json. The old shape {coat, fur, eye, tail} is still valid; the other keys are optional extensions (contract 1.1).",
+  "type": "object",
+  "required": ["coat", "fur", "eye", "tail"],
+  "additionalProperties": false,
+  "properties": {
+    "coat": {"type": "string", "enum": ["tabby", "tuxedo", "calico", "black", "siamese", "ginger", "sphynx"]},
+    "fur": {"type": "string", "enum": ["none", "short", "medium", "long"]},
+    "eye": {"type": "string", "enum": ["amber", "green", "hazel", "gold", "blue"]},
+    "tail": {"type": "string", "enum": ["classic", "long", "plume", "stubby"]},
+    "rarity": {"type": "string", "enum": ["common", "uncommon", "rare"]},
+    "breed": {"type": "string", "enum": ["domestic", "sphynx", "maine_coon"]},
+    "fur_primary": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/hex_color"}},
+    "fur_secondary": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/hex_color"}},
+    "proportions": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "head": {"$ref": "#/$defs/range"},
+        "leg": {"$ref": "#/$defs/range"},
+        "tail": {"$ref": "#/$defs/range"},
+        "body": {"$ref": "#/$defs/range"},
+        "leg_thickness": {"$ref": "#/$defs/range"},
+        "haunch": {"$ref": "#/$defs/range"},
+        "cheek": {"$ref": "#/$defs/range"},
+        "neck_fluff": {"$ref": "#/$defs/range"},
+        "fur_length": {"$ref": "#/$defs/range"}
+      }
+    },
+    "eye_shape": {
+      "description": "Optional pixel-art eye stamps to pick from (seeded). Default: breed/coat default or a seeded pick.",
+      "type": "array", "minItems": 1, "items": {"type": "string", "enum": ["round", "big", "almond", "slit", "big_slit", "gentle", "mischievous", "wide"]}
+    },
+    "fur_styles": {
+      "description": "Optional fur_style weights for CatGenome.from_visual (default: derived from 'fur'). Rarity boosts fuzzy.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "flat": {"type": "number", "minimum": 0},
+        "medium": {"type": "number", "minimum": 0},
+        "fuzzy": {"type": "number", "minimum": 0}
+      }
+    }
+  },
+  "$defs": {
+    "hex_color": {"type": "string", "pattern": "^#([0-9A-Fa-f]{6}|[0-9A-Fa-f]{8})$"},
+    "range": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "number", "minimum": 0.0, "maximum": 3.0}}
+  }
+}

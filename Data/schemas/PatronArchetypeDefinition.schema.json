@@ -3,12 +3,14 @@
   "title": "PatronArchetypeDefinition",
   "type": "object",
   "required": ["id", "display_name", "overstim_impact", "spend_rate", "visit_duration_sec", "tags"],
+  "additionalProperties": false,
   "properties": {
     "id": {"type": "string"},
     "display_name": {"type": "string"},
-    "overstim_impact": {"type": "number"},
-    "spend_rate": {"type": "number"},
-    "visit_duration_sec": {"type": "number"},
-    "tags": {"type": "array", "items": {"type": "string"}}
+    "overstim_impact": {"type": "number", "minimum": 0},
+    "spend_rate": {"type": "number", "minimum": 0},
+    "visit_duration_sec": {"type": "number", "minimum": 1},
+    "tags": {"type": "array", "items": {"type": "string"}},
+    "spawn_weight": {"type": "number", "minimum": 0}
   }
 }

@@ -1,62 +1,14 @@
 [
-  {
-    "id": "velvet_armchair",
-    "name": "Velvet Armchair",
-    "color": "Burgundy",
-    "durability": 92
-  },
-  {
-    "id": "espresso_bar",
-    "name": "Espresso Bar",
-    "color": "Walnut",
-    "durability": 88
-  },
-  {
-    "id": "wall_shelf",
-    "name": "Wall Shelf",
-    "color": "Oak",
-    "durability": 75
-  },
-  {
-    "id": "window_perch",
-    "name": "Window Perch",
-    "color": "Cream",
-    "durability": 81
-  },
-  {
-    "id": "book_nook",
-    "name": "Book Nook",
-    "color": "Cedar",
-    "durability": 84
-  },
-  {
-    "id": "tea_station",
-    "name": "Tea Station",
-    "color": "Honey Oak",
-    "durability": 79
-  },
-  {
-    "id": "plant_partition",
-    "name": "Plant Partition",
-    "color": "Forest Green",
-    "durability": 90
-  },
-  {
-    "id": "table_medium",
-    "name": "table_medium",
-    "color": "Prototype Blue",
-    "durability": 80
-  },
-  {
-    "id": "pallet_large",
-    "name": "Pallet_Large",
-    "color": "Prototype Gray",
-    "durability": 82
-  },
-  {
-    "id": "primitive_wall_half",
-    "name": "Primitive_Wall_Half",
-    "color": "Prototype Brown",
-    "durability": 95
-  }
+  {"id": "velvet_armchair", "name": "Velvet Sofa", "color": "Velvet Rose", "tint": "#B86F6F", "durability": 92, "category_label": "Seating"},
+  {"id": "espresso_bar", "name": "Espresso Bar", "color": "Walnut", "tint": "#6B4A35", "durability": 88, "category_label": "Service"},
+  {"id": "wall_shelf", "name": "Wall Shelf", "color": "Oak", "tint": "#B88A5E", "durability": 75, "category_label": "Cat"},
+  {"id": "window_perch", "name": "Window Perch", "color": "Cream", "tint": "#EFE3CF", "durability": 81, "category_label": "Cat"},
+  {"id": "book_nook", "name": "Book Nook", "color": "Cedar", "tint": "#9C6B4E", "durability": 84, "category_label": "Seating"},
+  {"id": "tea_station", "name": "Tea Station", "color": "Honey Oak", "tint": "#C99A5B", "durability": 79, "category_label": "Service"},
+  {"id": "plant_partition", "name": "Plant Partition", "color": "Sage", "tint": "#8FA88A", "durability": 90, "category_label": "Flow"},
+  {"id": "heating_pad", "name": "Heating Pad", "color": "Warm Peach", "tint": "#E8A87C", "durability": 70, "category_label": "Cat"},
+  {"id": "cat_tunnel", "name": "Cat Tunnel", "color": "Dusty Teal", "tint": "#7FA3A1", "durability": 78, "category_label": "Cat"},
+  {"id": "scratch_post", "name": "Scratch Post", "color": "Sisal", "tint": "#C8B08A", "durability": 65, "category_label": "Cat"},
+  {"id": "quiet_signage", "name": "Quiet Signage", "color": "Lavender", "tint": "#A99BC4", "durability": 95, "category_label": "Flow"},
+  {"id": "adoption_corner", "name": "Adoption Corner", "color": "Blush", "tint": "#E3B9A0", "durability": 90, "category_label": "Meta"}
 ]

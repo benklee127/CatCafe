@@ -43,7 +43,13 @@ func configure(main_level, spawn_grid: Vector2i) -> void:
 	idle_timer = 1.0
 
 func _ready() -> void:
-	rng.randomize()
+	var seed_value: int = 0
+	if level != null and level.has_method("next_actor_seed"):
+		seed_value = int(level.call("next_actor_seed"))
+	if seed_value != 0:
+		rng.seed = seed_value
+	else:
+		rng.randomize()
 	retarget_timer = rng.randf_range(0.2, 0.9)
 	idle_timer = rng.randf_range(idle_duration_min, idle_duration_max)
 	slot_seek_timer = rng.randf_range(slot_seek_interval_min, slot_seek_interval_max)
@@ -70,11 +76,13 @@ func _ensure_sprite() -> void:
 		return
 	_sprite = get_node_or_null("Sprite2D")
 	if _sprite == null:
+		# Code-built sprite: lift it with offset. Scene sprites (Cat.tscn / Human.tscn)
+		# are already positioned at (0,-12), so applying the offset too would double it.
 		_sprite = Sprite2D.new()
 		_sprite.name = "Sprite2D"
+		_sprite.offset = Vector2(0, -12)
 		add_child(_sprite)
 	_sprite.texture = CAT_TEXTURE
-	_sprite.offset = Vector2(0, -12)
 
 func _update_overstimulation(delta: float, nearby_patrons: int) -> void:
 	if state == REST:

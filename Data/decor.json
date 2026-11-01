@@ -1,14 +1,14 @@
 [
-  {"id":"velvet_armchair","category":"customer","buffs":{"patron_stay_mult":1.25,"tip_mult":1.1},"aura_radius":2,"stack_rule":"diminishing","placement":{"walkable":false}},
-  {"id":"espresso_bar","category":"customer","buffs":{"patron_turnover_mult":1.3,"interaction_mult":0.85},"aura_radius":3,"stack_rule":"additive","placement":{"walkable":false}},
-  {"id":"wall_shelf","category":"cat","buffs":{"mid_rest_reduction":8},"aura_radius":2,"stack_rule":"diminishing","placement":{"walkable":false}},
-  {"id":"heating_pad","category":"cat","buffs":{"happiness_gain":10,"sleep_bias":0.2},"aura_radius":1,"stack_rule":"diminishing","placement":{"walkable":true}},
-  {"id":"plant_partition","category":"flow","buffs":{"line_of_sight_break":0.25},"aura_radius":2,"stack_rule":"additive","placement":{"walkable":false}},
-  {"id":"cat_tunnel","category":"cat","buffs":{"pathing_speed_mult":1.08},"aura_radius":2,"stack_rule":"additive","placement":{"walkable":true}},
-  {"id":"window_perch","category":"cat","buffs":{"trust_gain_mult":1.1},"aura_radius":2,"stack_rule":"diminishing","placement":{"walkable":false}},
-  {"id":"book_nook","category":"customer","buffs":{"gentle_reader_spawn_bias":0.15},"aura_radius":2,"stack_rule":"additive","placement":{"walkable":false}},
-  {"id":"tea_station","category":"customer","buffs":{"tip_mult":1.05},"aura_radius":2,"stack_rule":"additive","placement":{"walkable":false}},
-  {"id":"scratch_post","category":"cat","buffs":{"overstim_decay_mult":1.12},"aura_radius":1,"stack_rule":"additive","placement":{"walkable":true}},
-  {"id":"quiet_signage","category":"flow","buffs":{"hyper_spawn_bias":-0.1},"aura_radius":3,"stack_rule":"additive","placement":{"walkable":false}},
-  {"id":"adoption_corner","category":"meta","buffs":{"adoption_reputation_mult":1.1},"aura_radius":2,"stack_rule":"unique","placement":{"walkable":false}}
+  {"id":"velvet_armchair","display_name":"Velvet Sofa","category":"customer","cost":40,"buffs":{"patron_stay_mult":1.25,"tip_mult":1.1},"aura_radius":2,"stack_rule":"diminishing","placement":{"walkable":false}},
+  {"id":"espresso_bar","display_name":"Espresso Bar","category":"customer","cost":60,"buffs":{"patron_turnover_mult":1.3,"interaction_mult":0.85},"aura_radius":3,"stack_rule":"additive","placement":{"walkable":false}},
+  {"id":"wall_shelf","display_name":"Wall Shelf","category":"cat","cost":30,"buffs":{"mid_rest_reduction":8},"aura_radius":2,"stack_rule":"diminishing","placement":{"walkable":false}},
+  {"id":"heating_pad","display_name":"Heating Pad","category":"cat","cost":20,"buffs":{"overstim_decay_mult":1.3,"trust_gain_mult":1.15},"aura_radius":1,"stack_rule":"diminishing","placement":{"walkable":true}},
+  {"id":"plant_partition","display_name":"Plant Partition","category":"flow","cost":15,"buffs":{"line_of_sight_break":0.25},"aura_radius":2,"stack_rule":"additive","placement":{"walkable":false}},
+  {"id":"cat_tunnel","display_name":"Cat Tunnel","category":"cat","cost":25,"buffs":{"pathing_speed_mult":1.08},"aura_radius":2,"stack_rule":"additive","placement":{"walkable":true}},
+  {"id":"window_perch","display_name":"Window Perch","category":"cat","cost":35,"buffs":{"trust_gain_mult":1.1},"aura_radius":2,"stack_rule":"diminishing","placement":{"walkable":false}},
+  {"id":"book_nook","display_name":"Book Nook","category":"customer","cost":45,"buffs":{"gentle_reader_spawn_bias":0.15},"aura_radius":2,"stack_rule":"additive","placement":{"walkable":false}},
+  {"id":"tea_station","display_name":"Tea Station","category":"customer","cost":35,"buffs":{"tip_mult":1.05},"aura_radius":2,"stack_rule":"additive","placement":{"walkable":false}},
+  {"id":"scratch_post","display_name":"Scratch Post","category":"cat","cost":15,"buffs":{"overstim_decay_mult":1.12},"aura_radius":1,"stack_rule":"additive","placement":{"walkable":true}},
+  {"id":"quiet_signage","display_name":"Quiet Signage","category":"flow","cost":10,"buffs":{"hyper_spawn_bias":-0.1},"aura_radius":3,"stack_rule":"additive","placement":{"walkable":false}},
+  {"id":"adoption_corner","display_name":"Adoption Corner","category":"meta","cost":50,"buffs":{"adoption_reputation_mult":1.1},"aura_radius":2,"stack_rule":"unique","placement":{"walkable":false}}
 ]

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DecorUi",
+  "description": "One entry of Data/decor_ui.json (owned by the level track). Extra keys are allowed so the level track can extend it.",
+  "type": "object",
+  "required": ["id", "name"],
+  "properties": {
+    "id": {"type": "string"},
+    "name": {"type": "string"},
+    "color": {"type": "string"},
+    "durability": {"type": "number", "minimum": 0},
+    "tint": {"type": "string", "pattern": "^#([0-9A-Fa-f]{6}|[0-9A-Fa-f]{8})$"},
+    "category": {"type": "string"},
+    "description": {"type": "string"}
+  }
+}

@@ -3,11 +3,14 @@
   "title": "TraitDefinition",
   "type": "object",
   "required": ["id", "display_name", "overstim_rate_mult", "trust_gain_mult", "adoption_match_tags"],
+  "additionalProperties": false,
   "properties": {
     "id": {"type": "string"},
     "display_name": {"type": "string"},
-    "overstim_rate_mult": {"type": "number"},
-    "trust_gain_mult": {"type": "number"},
-    "adoption_match_tags": {"type": "array", "items": {"type": "string"}}
+    "overstim_rate_mult": {"type": "number", "minimum": 0},
+    "trust_gain_mult": {"type": "number", "minimum": 0},
+    "adoption_match_tags": {"type": "array", "items": {"type": "string"}},
+    "rarity_weight": {"type": "number", "minimum": 0},
+    "motion_mod": {"type": "object", "additionalProperties": {"type": "number"}}
   }
 }

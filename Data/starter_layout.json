@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "notes": "Anchors are level cells (after mini-tile subdivision, 0.7 m). Same entry shape as run_state placed_decor.",
+  "placed_decor": [
+    {"decor_id": "espresso_bar", "anchor": [12, 1], "rotation": 0},
+    {"decor_id": "window_perch", "anchor": [18, 0], "rotation": 0},
+    {"decor_id": "velvet_armchair", "anchor": [8, 13], "rotation": 0},
+    {"decor_id": "cat_tunnel", "anchor": [6, 14], "rotation": 0},
+    {"decor_id": "adoption_corner", "anchor": [3, 17], "rotation": 90},
+    {"decor_id": "wall_shelf", "anchor": [0, 10], "rotation": 90},
+    {"decor_id": "tea_station", "anchor": [0, 13], "rotation": 90},
+    {"decor_id": "book_nook", "anchor": [0, 17], "rotation": 90},
+    {"decor_id": "plant_partition", "anchor": [18, 15], "rotation": 90},
+    {"decor_id": "quiet_signage", "anchor": [2, 8], "rotation": 0},
+    {"decor_id": "scratch_post", "anchor": [10, 5], "rotation": 0},
+    {"decor_id": "heating_pad", "anchor": [10, 2], "rotation": 0}
+  ]
+}

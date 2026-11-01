@@ -31,22 +31,44 @@ func remove_slots(slot_ids: Array) -> void:
 	for id_variant in slot_ids:
 		remove_slot(int(id_variant))
 
+## Nearest free, reachable slot of this kind. Reachability uses the level's rest-aware
+## pathing per actor: an actor standing in the rest area may path out through a door.
 func request_best_slot(kind: StringName, actor: Node, from_grid: Vector2i, level, allow_rest_area: bool = false) -> int:
 	var best_id: int = -1
 	var best_cost: int = 1_000_000
+	var allow_rest: bool = allow_rest_area
+	if level != null and level.has_method("is_in_rest_area") and bool(level.is_in_rest_area(from_grid)):
+		allow_rest = true
+	var distances: Dictionary = {}
+	var use_field: bool = level != null and level.has_method("path_distances_from")
+	var field_built: bool = false
 	for slot_id in slots.keys():
 		var slot_data: Dictionary = slots[slot_id]
 		if slot_data.get("kind", &"") != kind:
 			continue
-		if slot_data.get("claimed_by", null) != null:
-			continue
+		var claimer = slot_data.get("claimed_by", null)
+		if claimer != null:
+			if is_instance_valid(claimer) and claimer != actor:
+				continue
+			if not is_instance_valid(claimer):
+				slot_data["claimed_by"] = null
 		var slot_grid: Vector2i = slot_data.get("grid", Vector2i.ZERO)
+		if level != null and level.has_method("is_walkable") and not bool(level.is_walkable(slot_grid, allow_rest)):
+			continue
 		var cost: int = 0
 		if slot_grid != from_grid:
-			var path: Array[Vector2i] = level.build_path(from_grid, slot_grid, allow_rest_area)
-			if path.is_empty():
-				continue
-			cost = path.size()
+			if use_field:
+				if not field_built:
+					distances = level.path_distances_from(from_grid, allow_rest)
+					field_built = true
+				if not distances.has(slot_grid):
+					continue
+				cost = int(distances[slot_grid])
+			else:
+				var path: Array[Vector2i] = level.build_path(from_grid, slot_grid, allow_rest)
+				if path.is_empty():
+					continue
+				cost = path.size()
 		if cost < best_cost:
 			best_cost = cost
 			best_id = int(slot_id)

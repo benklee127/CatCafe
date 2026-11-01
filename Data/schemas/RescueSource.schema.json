@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RescueSource",
+  "description": "One entry of Data/rescue_sources.json. initial_trust is an inclusive [min, max] range.",
+  "type": "object",
+  "required": ["id", "display_name", "cost_money", "time_cost_hours", "initial_trust", "rarity_weights"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {"type": "string"},
+    "display_name": {"type": "string"},
+    "cost_money": {"type": "integer", "minimum": 0},
+    "time_cost_hours": {"type": "number", "minimum": 0},
+    "initial_trust": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "number", "minimum": 0, "maximum": 100}},
+    "rarity_weights": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "common": {"type": "number", "minimum": 0},
+        "uncommon": {"type": "number", "minimum": 0},
+        "rare": {"type": "number", "minimum": 0}
+      }
+    },
+    "trait_bias": {"type": "object", "additionalProperties": {"type": "number", "minimum": 0}},
+    "event_chance_per_day": {"type": "number", "minimum": 0, "maximum": 1}
+  }
+}

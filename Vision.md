@@ -51,6 +51,7 @@ Here is the master list of everything we have decided for your cozy cat cafe sim
 1. Core Concept & Art Style
 The Vibe: A relaxing, cozy management simulator with a strong heart, focused on resource management and animal rehabilitation.
 Perspective: 2D Top-Down or Isometric (similar to Unpacking). This allows for a clean grid-based building system, highly readable UI, easy asset creation, and charming sprite animations without the headache of 3D modeling and physics.
+Update (hybrid 3D decision): the game now uses an orthographic 3D diorama room with 2D billboard actors (procedural 2D cat rigs rendered via SubViewport). The grid, readability and 2D-art goals above still apply. See Docs/TECH_SPEC.md.
 2. The Cats (Procedural Generation & Traits)
 Endless Variety: Cats are procedurally generated using 2D sprite layers (mixing coat patterns, fur length, eye colors, and tail types).
 Distinct Personalities: Each cat rolls 2-3 traits (e.g., Cuddly, Feisty, Glutton) that dictate how fast they get overstimulated, how they interact with patrons, and what kind of "Forever Home" they need.

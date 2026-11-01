@@ -9,9 +9,14 @@ var spend_rate: float = 1.0
 var world_bounds := Rect2(Vector2(180, 180), Vector2(1200, 560))
 var _target: Vector2
 var rng := RandomNumberGenerator.new()
+## Per-agent seed handed down from the scene rng. 0 means "randomize".
+var rng_seed: int = 0
 
 func _ready() -> void:
-	rng.randomize()
+	if rng_seed != 0:
+		rng.seed = rng_seed
+	else:
+		rng.randomize()
 	_target = _pick_target()
 	queue_redraw()
 

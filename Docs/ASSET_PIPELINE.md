@@ -25,7 +25,7 @@ Suggested categories under `Art_Assets/`:
 3. Export game-ready files to matching `export/` folder.
 4. Import into Godot and apply import defaults from `Docs/ART_STYLE_GUIDE.md`.
 5. Integrate into scene/UI/data references.
-6. Validate in runtime (`Scenes/Main.tscn`) for readability and behavior.
+6. Validate in runtime (`Scenes/Prototype3D/MainLevel3D.tscn`, the main scene) for readability, scale and behavior. Use the scale contract in `Docs/ART_STYLE_GUIDE.md`.
 7. Update manifest status (`todo` -> `in_progress` -> `review` -> `done`).
 
 ## Naming Convention

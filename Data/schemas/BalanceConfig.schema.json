@@ -4,8 +4,85 @@
   "type": "object",
   "required": ["overstim", "trust", "economy"],
   "properties": {
-    "overstim": {"type": "object"},
-    "trust": {"type": "object"},
-    "economy": {"type": "object"}
+    "overstim": {
+      "type": "object",
+      "required": ["base_decay_per_sec", "retreat_threshold", "rest_recovery_per_sec"],
+      "additionalProperties": false,
+      "properties": {
+        "base_decay_per_sec": {"type": "number", "minimum": 0},
+        "retreat_threshold": {"type": "number", "minimum": 1},
+        "rest_recovery_per_sec": {"type": "number", "minimum": 0},
+        "rest_release_threshold": {"type": "number", "minimum": 0},
+        "interaction_gain_per_sec": {"type": "number", "minimum": 0},
+        "crowd_mult": {"type": "number", "minimum": 0},
+        "trait_mult_min": {"type": "number", "minimum": 0},
+        "trait_mult_max": {"type": "number", "minimum": 0},
+        "min_rest_sec": {"type": "number", "minimum": 0},
+        "post_rest_grace_sec": {"type": "number", "minimum": 0},
+        "post_rest_gain_mult": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "trust": {
+      "type": "object",
+      "required": ["daily_base_gain", "stress_penalty", "ready_threshold"],
+      "additionalProperties": false,
+      "properties": {
+        "daily_base_gain": {"type": "number", "minimum": 0},
+        "stress_penalty": {"type": "number", "minimum": 0},
+        "stress_repeat_window_sec": {"type": "number", "minimum": 0},
+        "stress_isolated_mult": {"type": "number", "minimum": 0, "maximum": 1},
+        "calm_interaction_bonus_per_sec": {"type": "number", "minimum": 0},
+        "rest_gain_mult": {"type": "number", "minimum": 0},
+        "ready_threshold": {"type": "number", "minimum": 1},
+        "start": {"type": "number", "minimum": 0},
+        "day_length_sec": {"type": "number", "minimum": 1},
+        "calm_overstim_ratio": {"type": "number", "minimum": 0, "maximum": 1},
+        "adoptable_hysteresis": {"type": "number", "minimum": 0},
+        "good_company_mult": {"type": "number", "minimum": 0},
+        "states": {"$ref": "TrustStates.schema.json"}
+      }
+    },
+    "economy": {
+      "type": "object",
+      "required": ["base_tip", "adoption_reputation", "starting_money"],
+      "additionalProperties": false,
+      "properties": {
+        "base_tip": {"type": "number", "minimum": 0},
+        "adoption_reputation": {"type": "number", "minimum": 0},
+        "starting_money": {"type": "integer", "minimum": 0},
+        "starting_reputation": {"type": "integer", "minimum": 0}
+      }
+    },
+    "population": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "starting_cats": {"type": "integer", "minimum": 0},
+        "patron_target_count": {"type": "integer", "minimum": 0},
+        "patron_max_count": {"type": "integer", "minimum": 0},
+        "patron_spawn_interval_sec": {"type": "number", "minimum": 0},
+        "day_length_sec": {"type": "number", "minimum": 1}
+      }
+    },
+    "rarity_weights": {"$ref": "#/$defs/rarity_weights"},
+    "adoption_thresholds": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "good": {"type": "number", "minimum": 0, "maximum": 1},
+        "neutral": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    }
+  },
+  "$defs": {
+    "rarity_weights": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "common": {"type": "number", "minimum": 0},
+        "uncommon": {"type": "number", "minimum": 0},
+        "rare": {"type": "number", "minimum": 0}
+      }
+    }
   }
 }

@@ -1,14 +1,43 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "RoomDefinition",
+  "description": "All rects and cells are in base tiles (grid_unit 1), before the level's mini-tile subdivision.",
   "type": "object",
-  "required": ["id", "tile_width", "tile_height", "rest_area_tile", "patron_spawns", "cat_spawns"],
+  "required": ["id", "tier", "cafe_floor_rect", "rest_area_rect", "rest_door_cells", "entrance_cell", "patron_spawns", "cat_spawns"],
   "properties": {
     "id": {"type": "string"},
-    "tile_width": {"type": "number"},
-    "tile_height": {"type": "number"},
-    "rest_area_tile": {"type": "object"},
-    "patron_spawns": {"type": "array", "items": {"type": "object"}},
-    "cat_spawns": {"type": "array", "items": {"type": "object"}}
+    "tier": {"type": "integer", "minimum": 1},
+    "grid_unit": {"type": "integer", "minimum": 1},
+    "cafe_floor_rect": {"$ref": "#/$defs/rect"},
+    "rest_area_rect": {"$ref": "#/$defs/rect"},
+    "rest_door_cells": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/cell"}},
+    "entrance_cell": {"$ref": "#/$defs/cell"},
+    "patron_spawns": {"type": "array", "items": {"$ref": "#/$defs/cell"}},
+    "cat_spawns": {"type": "array", "items": {"$ref": "#/$defs/cell"}},
+    "tile_width": {"type": "integer", "minimum": 1, "description": "Legacy; equals cafe_floor_rect.w."},
+    "tile_height": {"type": "integer", "minimum": 1, "description": "Legacy; equals cafe_floor_rect.h."},
+    "rest_area_tile": {"$ref": "#/$defs/cell", "description": "Legacy single rest tile; prefer rest_area_rect."}
+  },
+  "$defs": {
+    "rect": {
+      "type": "object",
+      "required": ["x", "y", "w", "h"],
+      "additionalProperties": false,
+      "properties": {
+        "x": {"type": "integer"},
+        "y": {"type": "integer"},
+        "w": {"type": "integer", "minimum": 1},
+        "h": {"type": "integer", "minimum": 1}
+      }
+    },
+    "cell": {
+      "type": "object",
+      "required": ["x", "y"],
+      "additionalProperties": false,
+      "properties": {
+        "x": {"type": "integer"},
+        "y": {"type": "integer"}
+      }
+    }
   }
 }

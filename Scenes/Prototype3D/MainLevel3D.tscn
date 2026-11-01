@@ -1,18 +1,42 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=9 format=3]
 
 [ext_resource type="Script" path="res://Scripts/prototype3d/MainLevel3D.gd" id="1"]
 [ext_resource type="Script" path="res://Scripts/prototype3d/FloorBuilder3D.gd" id="2"]
 [ext_resource type="Script" path="res://Scripts/prototype3d/DecorPlacement3D.gd" id="3"]
 [ext_resource type="Script" path="res://Scripts/prototype3d/SlotManager3D.gd" id="4"]
 [ext_resource type="Script" path="res://Scripts/data/DataLoader.gd" id="5"]
+[ext_resource type="PackedScene" path="res://UI/HUD3D.tscn" id="6"]
+[ext_resource type="Script" path="res://Scripts/data/SaveSystem.gd" id="7"]
+
+[sub_resource type="Environment" id="Environment_cozy"]
+background_mode = 1
+background_color = Color(0.168627, 0.129412, 0.160784, 1)
+ambient_light_source = 2
+ambient_light_color = Color(1, 0.901961, 0.8, 1)
+ambient_light_energy = 0.6
+tonemap_mode = 2
+tonemap_exposure = 1.0
+tonemap_white = 6.0
+ssao_enabled = true
+ssao_radius = 0.6
+ssao_intensity = 1.5
+ssao_power = 1.5
+glow_enabled = true
+glow_intensity = 0.3
+glow_bloom = 0.05
+glow_hdr_threshold = 1.2
+adjustment_enabled = true
+adjustment_saturation = 1.05
 
 [node name="MainLevel3D" type="Node3D"]
 script = ExtResource("1")
-iso_pitch_degrees = 25.0
-iso_distance_multiplier = 2.2
+rest_tile_height_3d = 0.28
 
 [node name="DataLoader" type="Node" parent="."]
 script = ExtResource("5")
+
+[node name="SaveSystem" type="Node" parent="."]
+script = ExtResource("7")
 
 [node name="WorldRoot" type="Node3D" parent="."]
 
@@ -37,14 +61,24 @@ selected_decor_id = "velvet_armchair"
 script = ExtResource("4")
 
 [node name="CameraRig" type="Node3D" parent="."]
-position = Vector3(0, 0, 0)
-rotation_degrees = Vector3(-35, 45, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CameraRig"]
-position = Vector3(0, 18, 18)
+projection = 1
 current = true
-fov = 35.0
+size = 12.0
+near = 0.1
+far = 120.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_cozy")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-rotation_degrees = Vector3(-50, 30, 0)
-light_energy = 1.2
+rotation_degrees = Vector3(-48, 225, 0)
+light_color = Color(1, 0.886275, 0.74902, 1)
+light_energy = 1.0
+shadow_enabled = true
+shadow_blur = 1.5
+directional_shadow_mode = 1
+directional_shadow_max_distance = 60.0
+
+[node name="HUD3D" parent="." instance=ExtResource("6")]

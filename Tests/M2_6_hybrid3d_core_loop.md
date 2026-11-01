@@ -9,11 +9,13 @@ Validate the hybrid 3D runtime path:
 
 ## Setup
 1. Run `Scenes/Prototype3D/MainLevel3D.tscn`.
-2. Confirm camera is fixed isometric view.
+2. Confirm the camera is orthographic isometric (yaw 45, pitch 40). Wheel zoom works when nothing is held, and WASD or a middle-drag pans.
 3. Controls:
-- Left mouse (`place_decor`) places selected decor.
-- Right mouse (`remove_decor`) removes decor under hovered grid.
-- `R` rotates placement preview (90-degree step).
+   - Pick an item from **Build** (bottom-left), then left click to place it. The ghost is green when placeable and red when blocked.
+   - **R**, **Q/E** or the wheel (while holding) rotate the preview in 90° steps.
+   - **Esc** or right click cancels the held item.
+   - To remove decor, click placed decor with nothing held, then use the inspector.
+   - **F6** toggles the cat SubViewport rig and the fallback sprite.
 
 ## Cases
 
@@ -36,7 +38,7 @@ Expected:
 
 ### 3. Removal and occupancy release
 1. Place multiple decor items.
-2. Remove one by right-clicking occupied cell.
+2. Remove one through the inspector (click it with nothing held).
 Expected:
 - Decor node is removed.
 - Occupancy and slot claims for that decor are released.
@@ -55,6 +57,7 @@ Expected:
 - Cat transitions to retreating.
 - Cat reaches rest area path target and enters rest state.
 - Overstimulation decreases during rest.
+- After rest the cat enters `returning`, leaves through the rest-area door and resumes wandering. It never interacts while retreating, resting or returning.
 
 ### 6. Slot exclusivity + invalidation
 1. Place decor that provides slots.

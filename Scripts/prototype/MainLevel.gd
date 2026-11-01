@@ -14,6 +14,8 @@ const MainLevelDecorScript = preload("res://Scripts/prototype/MainLevelDecor.gd"
 @export var cats_to_spawn: int = 1
 @export var patrons_to_spawn: int = 3
 @export var background_texture: Texture2D
+## Fixed run seed for reproducible tests. 0 = randomize.
+@export var run_seed: int = 0
 
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var hovered_grid: Vector2i = Vector2i.ZERO
@@ -30,7 +32,10 @@ var _next_slot_id: int = 1
 @onready var patrons_layer: Node2D = $Actors/Patrons
 
 func _ready() -> void:
-	rng.randomize()
+	if run_seed != 0:
+		rng.seed = run_seed
+	else:
+		rng.randomize()
 	if background_texture != null:
 		background_sprite.texture = background_texture
 	for _i in range(cats_to_spawn):
@@ -82,6 +87,10 @@ func random_cafe_cell() -> Vector2i:
 
 func random_rest_cell() -> Vector2i:
 	return _random_cell_in_rect(rest_area_rect)
+
+## Seed for a newly spawned actor, derived from the level rng (actors call this in _ready).
+func next_actor_seed() -> int:
+	return rng.randi() | 1
 
 func is_blocked(grid_pos: Vector2i) -> bool:
 	return blocked_cells.has(grid_pos)
@@ -215,8 +224,8 @@ func build_path(start: Vector2i, goal: Vector2i, allow_rest_area: bool) -> Array
 	var result: Array[Vector2i] = []
 	if start == goal:
 		return result
-	if not is_walkable(start, true):
-		return result
+	# The start cell may be blocked (e.g. decor dropped on an actor); the BFS still
+	# seeds from it so the actor can walk off instead of freezing.
 	if not is_walkable(goal, allow_rest_area):
 		return result
 
@@ -273,7 +282,20 @@ func _random_walkable_cell(allow_rest_area: bool, rect: Rect2i) -> Vector2i:
 func _can_place_decor(grid_pos: Vector2i) -> bool:
 	if not is_walkable(grid_pos, false):
 		return false
-	return not decor_by_cell.has(grid_pos)
+	if decor_by_cell.has(grid_pos):
+		return false
+	return not _is_actor_on_cell(grid_pos)
+
+## True when a cat or patron stands on the cell or is about to step onto it.
+func _is_actor_on_cell(grid_pos: Vector2i) -> bool:
+	for layer in [cats_layer, patrons_layer]:
+		for actor in (layer as Node).get_children():
+			if actor.get("grid_position") == grid_pos:
+				return true
+			var actor_path: Variant = actor.get("path")
+			if actor_path is Array and not (actor_path as Array).is_empty() and (actor_path as Array)[0] == grid_pos:
+				return true
+	return false
 
 func _register_decor_slots(decor: Node2D, decor_cell: Vector2i) -> void:
 	var slot_ids: Array[int] = []

@@ -27,7 +27,13 @@ func configure(main_level, spawn_grid: Vector2i) -> void:
 	global_position = level.map_to_world(spawn_grid)
 
 func _ready() -> void:
-	rng.randomize()
+	var seed_value: int = 0
+	if level != null and level.has_method("next_actor_seed"):
+		seed_value = int(level.call("next_actor_seed"))
+	if seed_value != 0:
+		rng.seed = seed_value
+	else:
+		rng.randomize()
 	retarget_timer = rng.randf_range(0.4, 1.2)
 	_ensure_sprite()
 	queue_redraw()
@@ -46,11 +52,13 @@ func _ensure_sprite() -> void:
 		return
 	_sprite = get_node_or_null("Sprite2D")
 	if _sprite == null:
+		# Code-built sprite: lift it with offset. Scene sprites (Cat.tscn / Human.tscn)
+		# are already positioned at (0,-12), so applying the offset too would double it.
 		_sprite = Sprite2D.new()
 		_sprite.name = "Sprite2D"
+		_sprite.offset = Vector2(0, -12)
 		add_child(_sprite)
 	_sprite.texture = PATRON_TEXTURE
-	_sprite.offset = Vector2(0, -12)
 
 func _update_state(delta: float) -> void:
 	if state == USING_SLOT:
