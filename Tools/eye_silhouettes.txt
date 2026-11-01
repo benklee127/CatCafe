@@ -1,0 +1,274 @@
+# Open-eye silhouettes for Tools/gen_eye_stamps.py (near eye: inner corner left).
+# "== <bucket> <shape>" then the rows: "#" = eye line, "." = fur, any other
+# character = inside the eye. Only the outline / inside split is read: iris
+# layers, pupil, glints, the light lower line and every expression come from
+# gen_eye_stamps.py SPEC. big and big_slit are drawn 1px larger than their
+# silhouette (big_slit uses the slit silhouettes).
+
+== S round
+..##..
+.#ow#.
+#oppo#
+#oppo#
+.#ll#.
+..##..
+
+== S big
+..##..
+.#oo#.
+#oooo#
+#oooo#
+#oooo#
+.#oo#.
+..##..
+
+== S almond
+..##..
+.#oo#.
+#oooo#
+.#oo#.
+..##..
+
+== S slit
+.###.
+#ooo#
+#ooo#
+#ooo#
+#ooo#
+.###.
+
+== S gentle
+.##...
+#oo##.
+#oooo#
+.#oo#.
+..##..
+
+== S mischievous
+...###
+.##oo#
+#oooo#
+#ooo#.
+.###..
+
+== S wide
+.####.
+#oooo#
+#oooo#
+.####.
+
+== M round
+..###..
+.#opw#.
+#oppww#
+#opppo#
+#opppo#
+#lpppl#
+.#lll#.
+..###..
+
+== M big
+..####..
+.#oppw#.
+#oopppw#
+#oppppo#
+#oppppo#
+#oppppo#
+#lwppll#
+.#llll#.
+..####..
+
+== M almond
+...###...
+.##opw##.
+#ooppwoo#
+#oopppoo#
+.##lll##.
+...###...
+
+== M slit
+..###..
+.#opw#.
+#oopoo#
+#oopoo#
+#oopoo#
+#oopoo#
+.#lpl#.
+..###..
+
+== M gentle
+.###....
+#ooo###.
+#opppwo#
+#opppoo#
+#lpppol#
+.#llll#.
+..####..
+
+== M mischievous
+.....####
+...##oow#
+.#oopppo#
+#ooopoo#.
+.#llll#..
+..####...
+
+== M wide
+..######..
+.#ooppwo#.
+#oooppooo#
+#llooooll#
+.#llllll#.
+..######..
+
+== L round
+..#####..
+.#oppww#.
+#ooppwwo#
+#opppppo#
+#opppppo#
+#opppppo#
+#opppppo#
+#lwppppl#
+.#lllll#.
+..#####..
+
+== L big
+..######..
+.#ooppww#.
+#oooppwwo#
+#oopppppo#
+#oppppppo#
+#oppppppo#
+#oppppppo#
+#oppppppo#
+#lwpppppl#
+.#llllll#.
+..######..
+
+== L almond
+...#####...
+.##oopww##.
+#ooopppwoo#
+#ooopppppo#
+#loopppppl#
+.##lllll##.
+...#####...
+
+== L slit
+..#####..
+.#oopww#.
+#ooopwoo#
+#ooopooo#
+#ooopooo#
+#ooopooo#
+#ooopooo#
+#lloplll#
+.#llpll#.
+..#####..
+
+== L gentle
+.####.....
+#oooo####.
+#oppppwoo#
+#opppppoo#
+#opppppoo#
+#lopppool#
+.#llllll#.
+..######..
+
+== L mischievous
+.......####
+....###oow#
+..##oopppo#
+.#ooopppo#.
+#oooopool#.
+.#lllll##..
+..#####....
+
+== L wide
+...######...
+.##ooppwo##.
+#ooooppwooo#
+#ooooppoooo#
+#llooooooll#
+.##llllll##.
+...######...
+
+# Compact fallback stamps (Cat2D uses them when a face is too small for the
+# bucket stamp: the eye gap never shrinks below LAYOUT.min_fur).
+== XS round
+.##.
+#oo#
+#oo#
+.##.
+
+== XS big
+.###.
+#ooo#
+#ooo#
+#ooo#
+.###.
+
+== XS almond
+.###.
+#ooo#
+#ooo#
+.###.
+
+== XS slit
+.###.
+#ooo#
+#ooo#
+#ooo#
+.###.
+
+== XS gentle
+##...
+#o##.
+#ooo#
+.###.
+
+== XS mischievous
+...##
+.##o#
+#ooo#
+.###.
+
+== XS wide
+.###.
+#ooo#
+.###.
+
+# Tiny last-resort stamps (bare iris + pupil + glint, no outline) for the
+# smallest heads at the lowest densities.
+== XXS round
+oo
+oo
+
+== XXS big
+oo
+oo
+oo
+
+== XXS almond
+oo
+oo
+
+== XXS slit
+oo
+oo
+oo
+
+== XXS gentle
+oo
+oo
+
+== XXS mischievous
+oo
+oo
+
+== XXS wide
+ooo
+ooo
+

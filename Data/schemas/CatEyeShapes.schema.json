@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CatEyeShapes",
+  "description": "Data/cat_eye_shapes.json: weighted eye shape pick for CatGenome. Shape names must match CatPixelFace.EYE_SHAPES.",
+  "type": "object",
+  "required": ["base"],
+  "additionalProperties": false,
+  "properties": {
+    "description": {"type": "string"},
+    "base": {"$ref": "#/$defs/weights"},
+    "breed_bias": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "domestic": {"$ref": "#/$defs/weights"},
+        "sphynx": {"$ref": "#/$defs/weights"},
+        "maine_coon": {"$ref": "#/$defs/weights"}
+      }
+    },
+    "coat_bias": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "tabby": {"$ref": "#/$defs/weights"},
+        "tuxedo": {"$ref": "#/$defs/weights"},
+        "calico": {"$ref": "#/$defs/weights"},
+        "black": {"$ref": "#/$defs/weights"},
+        "siamese": {"$ref": "#/$defs/weights"},
+        "ginger": {"$ref": "#/$defs/weights"},
+        "sphynx": {"$ref": "#/$defs/weights"}
+      }
+    },
+    "trait_bias": {
+      "description": "trait id -> weights (ids are cross-checked against traits.json).",
+      "type": "object",
+      "additionalProperties": {"$ref": "#/$defs/weights"}
+    }
+  },
+  "$defs": {
+    "weights": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "round": {"type": "number", "minimum": 0},
+        "big": {"type": "number", "minimum": 0},
+        "almond": {"type": "number", "minimum": 0},
+        "slit": {"type": "number", "minimum": 0},
+        "big_slit": {"type": "number", "minimum": 0},
+        "gentle": {"type": "number", "minimum": 0},
+        "mischievous": {"type": "number", "minimum": 0},
+        "wide": {"type": "number", "minimum": 0}
+      }
+    }
+  }
+}
