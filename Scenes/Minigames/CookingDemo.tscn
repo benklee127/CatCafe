@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://Scripts/minigame/CookingDemo.gd" id="1_demo"]
+[ext_resource type="PackedScene" path="res://UI/Minigame/MinigameHost.tscn" id="2_host"]
+
+[node name="CookingDemo" type="Node"]
+script = ExtResource("1_demo")
+
+[node name="MinigameHost" parent="." instance=ExtResource("2_host")]

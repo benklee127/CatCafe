@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://Scripts/minigame_demos/counter_cats/cc_demo.gd" id="1_demo"]
+[ext_resource type="PackedScene" path="res://Scenes/Prototype3D/MainLevel3D.tscn" id="2_level"]
+[ext_resource type="Script" path="res://Scripts/minigame_demos/counter_cats/cc_launcher.gd" id="3_launcher"]
+[ext_resource type="Script" path="res://Scripts/minigame_demos/counter_cats/cc_overlay.gd" id="4_overlay"]
+
+[node name="CounterCatsDemo" type="Node"]
+process_mode = 3
+script = ExtResource("1_demo")
+
+[node name="MainLevel3D" parent="." instance=ExtResource("2_level")]
+process_mode = 1
+
+[node name="CounterCatsLauncher" type="CanvasLayer" parent="."]
+process_mode = 3
+layer = 9
+script = ExtResource("3_launcher")
+
+[node name="CounterCatsOverlay" type="CanvasLayer" parent="."]
+process_mode = 3
+layer = 10
+script = ExtResource("4_overlay")

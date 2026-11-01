@@ -1,0 +1,206 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RecipeDefinition",
+  "description": "One entry of Data/recipes.json (cooking minigame 'Paw & Pour: Station Kitchen'). station is 'counter' or a decor id from decor.json. Per-verb params are documented in Docs/MINIGAMES.md and in $defs/*_params below; step_params is their union so typos are caught (SchemaValidator has no oneOf/if).",
+  "type": "object",
+  "required": ["id", "display_name", "station", "tier", "unlock", "base_price", "steps", "icon"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {"type": "string", "pattern": "^[a-z0-9_]+$"},
+    "display_name": {"type": "string", "minLength": 1},
+    "station": {"type": "string", "minLength": 1},
+    "tier": {"type": "integer", "minimum": 1, "maximum": 3},
+    "unlock": {"$ref": "#/$defs/unlock"},
+    "base_price": {"type": "number", "minimum": 1, "maximum": 50},
+    "par_bonus_sec": {"type": "number", "minimum": 0, "maximum": 30},
+    "icon": {"type": "string", "minLength": 1},
+    "dish": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "kind": {"type": "string", "enum": ["mug", "plate", "glass", "bowl"]},
+        "colors": {"type": "array", "minItems": 1, "maxItems": 4, "items": {"type": "string", "pattern": "^#[0-9A-Fa-f]{6}$"}},
+        "coat_from": {"type": "string"}
+      }
+    },
+    "flavor_text": {"type": "string"},
+    "order_weight_by_tag": {"type": "object", "additionalProperties": {"type": "number", "minimum": 0}},
+    "steps": {"type": "array", "minItems": 2, "maxItems": 8, "items": {"$ref": "#/$defs/step"}},
+    "effects": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "calm_aura": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["overstim", "radius_tiles"],
+          "properties": {
+            "overstim": {"type": "number", "maximum": 0},
+            "radius_tiles": {"type": "number", "minimum": 0},
+            "min_grade": {"type": "string", "enum": ["S", "A", "B", "C"]},
+            "duration_sec": {"type": "number", "minimum": 0}
+          }
+        }
+      }
+    },
+    "signature": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "properties": {
+        "pay_mult": {"type": "number", "minimum": 1},
+        "unlock_s_count": {"type": "integer", "minimum": 0},
+        "extra_step": {"$ref": "#/$defs/step"}
+      }
+    }
+  },
+  "$defs": {
+    "unlock_condition": {
+      "type": "object",
+      "required": ["type", "value"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {"type": "string", "enum": ["start", "day", "reputation", "adoptions", "decor"]},
+        "value": {"type": ["integer", "string"]}
+      }
+    },
+    "unlock": {
+      "type": "object",
+      "required": ["type", "value"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {"type": "string", "enum": ["start", "day", "reputation", "adoptions", "decor", "all"]},
+        "value": {"type": ["integer", "string", "array"], "items": {"$ref": "#/$defs/unlock_condition"}}
+      }
+    },
+    "step": {
+      "type": "object",
+      "required": ["type", "label", "par_sec", "weight", "params"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {"type": "string", "enum": ["pour", "keep_zone", "stop_ring", "trace", "place", "back_burner"]},
+        "label": {"type": "string", "minLength": 1},
+        "hint": {"type": "string"},
+        "par_sec": {"type": "number", "exclusiveMinimum": 0, "maximum": 30},
+        "weight": {"type": "number", "exclusiveMinimum": 0, "maximum": 5},
+        "kid_skip": {"type": "boolean"},
+        "params": {"$ref": "#/$defs/step_params"}
+      }
+    },
+    "range01": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "number", "minimum": 0, "maximum": 1}},
+    "color": {"type": "string", "pattern": "^#[0-9A-Fa-f]{6}$"},
+    "pour_params": {
+      "type": "object",
+      "description": "POUR: hold to pour, flow ramps flow_min->flow_max (vessel fraction/s) over ramp_sec; release on the line. Distance bands 0.03/0.06/0.10 -> 1.0/0.85/0.65 else 0.4; overfill > +0.15 spills, capped 0.65.",
+      "properties": {
+        "target_range": {"$ref": "#/$defs/range01"},
+        "flow_min": {"type": "number"}, "flow_max": {"type": "number"}, "ramp_sec": {"type": "number"},
+        "bands": {"type": "array"}, "spill_over": {"type": "number"}, "spill_cap": {"type": "number"},
+        "vessel": {"type": "string"}, "liquid": {"$ref": "#/$defs/color"},
+        "base_fill": {"type": "number"}, "base_liquid": {"$ref": "#/$defs/color"},
+        "layer": {"type": "string"}, "line_from_prev": {"type": "boolean"}, "no_overflow": {"type": "boolean"}
+      }
+    },
+    "keep_zone_params": {
+      "type": "object",
+      "description": "KEEP_ZONE: hold to raise the needle, release to fall. Fill need_sec in-zone within window_sec. accuracy = in-zone time / active time.",
+      "properties": {
+        "zone_center": {"type": "number"}, "zone_range": {"$ref": "#/$defs/range01"}, "zone_size": {"type": "number"},
+        "need_sec": {"type": "number"}, "window_sec": {"type": "number"},
+        "rise_speed": {"type": "number"}, "fall_speed": {"type": "number"}, "drift": {"type": "number"}, "gauge": {"type": "string"}
+      }
+    },
+    "stop_ring_params": {
+      "type": "object",
+      "description": "STOP_RING: tap when the ring is golden. sweep_sec defaults to the tier sweep (_sweep_sec). Golden window golden_sec, perfect middle perfect_sec. Miss -> one loop, retry capped retry_cap. hits > 1 = conveyor / tempo.",
+      "properties": {
+        "sweep_sec": {"type": "number"}, "golden_center": {"type": "number"}, "golden_sec": {"type": "number"}, "perfect_sec": {"type": "number"},
+        "hits": {"type": "integer", "minimum": 1, "maximum": 8}, "retry_cap": {"type": "number"}, "tempo_sec": {"type": "number"}, "food": {"type": "string"}
+      }
+    },
+    "trace_params": {
+      "type": "object",
+      "description": "TRACE: hold and drag along a dotted path within time_sec. accuracy = 1 - mean screen-space distance / tolerance_px; coverage < min_coverage caps at coverage_cap. Weight 1.5 in recipes.",
+      "properties": {
+        "path_pool": {"type": "array", "minItems": 1, "items": {"type": "string", "enum": ["cat_face", "paw", "loaf", "fish", "swirl", "spiral", "circle", "zigzag", "bow_tie"]}},
+        "time_sec": {"type": "number"}, "tolerance_px": {"type": "number"}, "min_coverage": {"type": "number"}, "coverage_cap": {"type": "number"},
+        "ink": {"$ref": "#/$defs/color"}, "ink2": {"$ref": "#/$defs/color"}, "canvas": {"$ref": "#/$defs/color"}
+      }
+    },
+    "place_params": {
+      "type": "object",
+      "description": "PLACE: swing-drop (tap while it sways) or drag to a ghost marker. Offset bands_px 5/10/18 -> 1.0/0.85/0.65 else 0.4; accuracy = mean over count items.",
+      "properties": {
+        "mode": {"type": "string", "enum": ["swing", "drag"]}, "count": {"type": "integer", "minimum": 1, "maximum": 6}, "item": {"type": "string"},
+        "swing_amp_px": {"type": "number"}, "swing_sec": {"type": "number"}, "bands_px": {"type": "array"}, "stack": {"type": "boolean"}, "tint_from_prev": {"type": "string"}
+      }
+    },
+    "back_burner_params": {
+      "type": "object",
+      "description": "BACK_BURNER: parallel timer (cook_range rolled, or cook_sec). Then done_window_sec at 1.0, good_window_sec at 0.65, then 0.4 forever. Collect by clicking its ring or O.",
+      "properties": {
+        "cook_sec": {"type": "number"}, "cook_range": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "number", "minimum": 1}},
+        "done_window_sec": {"type": "number"}, "good_window_sec": {"type": "number"}, "item": {"type": "string"}
+      }
+    },
+    "step_params": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "target_range": {"$ref": "#/$defs/range01"},
+        "flow_min": {"type": "number", "exclusiveMinimum": 0, "maximum": 2},
+        "flow_max": {"type": "number", "exclusiveMinimum": 0, "maximum": 2},
+        "ramp_sec": {"type": "number", "minimum": 0, "maximum": 5},
+        "bands": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"type": "number", "minimum": 0, "maximum": 1}},
+        "spill_over": {"type": "number", "minimum": 0, "maximum": 1},
+        "spill_cap": {"type": "number", "minimum": 0, "maximum": 1},
+        "vessel": {"type": "string", "enum": ["mug", "bowl", "glass", "pan", "mold"]},
+        "liquid": {"$ref": "#/$defs/color"},
+        "base_fill": {"type": "number", "minimum": 0, "maximum": 1},
+        "base_liquid": {"$ref": "#/$defs/color"},
+        "layer": {"type": "string"},
+        "line_from_prev": {"type": "boolean"},
+        "no_overflow": {"type": "boolean"},
+        "zone_center": {"type": "number", "minimum": 0, "maximum": 1},
+        "zone_range": {"$ref": "#/$defs/range01"},
+        "zone_size": {"type": "number", "exclusiveMinimum": 0, "maximum": 1},
+        "need_sec": {"type": "number", "exclusiveMinimum": 0, "maximum": 20},
+        "window_sec": {"type": "number", "exclusiveMinimum": 0, "maximum": 30},
+        "rise_speed": {"type": "number", "exclusiveMinimum": 0, "maximum": 5},
+        "fall_speed": {"type": "number", "exclusiveMinimum": 0, "maximum": 5},
+        "drift": {"type": "number", "minimum": 0, "maximum": 1},
+        "gauge": {"type": "string"},
+        "sweep_sec": {"type": "number", "exclusiveMinimum": 0, "maximum": 10},
+        "golden_center": {"type": "number", "minimum": 0, "maximum": 1},
+        "golden_sec": {"type": "number", "exclusiveMinimum": 0, "maximum": 3},
+        "perfect_sec": {"type": "number", "exclusiveMinimum": 0, "maximum": 3},
+        "hits": {"type": "integer", "minimum": 1, "maximum": 8},
+        "retry_cap": {"type": "number", "minimum": 0, "maximum": 1},
+        "tempo_sec": {"type": "number", "exclusiveMinimum": 0, "maximum": 5},
+        "food": {"type": "string"},
+        "path_pool": {"type": "array", "minItems": 1, "items": {"type": "string", "enum": ["cat_face", "paw", "loaf", "fish", "swirl", "spiral", "circle", "zigzag", "bow_tie"]}},
+        "time_sec": {"type": "number", "exclusiveMinimum": 0, "maximum": 20},
+        "tolerance_px": {"type": "number", "exclusiveMinimum": 0, "maximum": 64},
+        "min_coverage": {"type": "number", "minimum": 0, "maximum": 1},
+        "coverage_cap": {"type": "number", "minimum": 0, "maximum": 1},
+        "ink": {"$ref": "#/$defs/color"},
+        "ink2": {"$ref": "#/$defs/color"},
+        "canvas": {"$ref": "#/$defs/color"},
+        "mode": {"type": "string", "enum": ["swing", "drag"]},
+        "count": {"type": "integer", "minimum": 1, "maximum": 6},
+        "item": {"type": "string"},
+        "swing_amp_px": {"type": "number", "minimum": 0, "maximum": 160},
+        "swing_sec": {"type": "number", "exclusiveMinimum": 0, "maximum": 10},
+        "bands_px": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"type": "number", "minimum": 0}},
+        "stack": {"type": "boolean"},
+        "tint_from_prev": {"type": "string"},
+        "cook_sec": {"type": "number", "minimum": 1, "maximum": 30},
+        "cook_range": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "number", "minimum": 1, "maximum": 30}},
+        "done_window_sec": {"type": "number", "exclusiveMinimum": 0, "maximum": 10},
+        "good_window_sec": {"type": "number", "exclusiveMinimum": 0, "maximum": 10},
+        "debug_accuracy": {"type": "number", "minimum": 0, "maximum": 1},
+        "debug_delay": {"type": "number", "minimum": 0},
+        "debug_time": {"type": "number"}
+      }
+    }
+  }
+}
